@@ -46,12 +46,17 @@ struct HandResolver {
     private var isFlush : Bool {
         return hand[0].suit == hand[1].suit && hand[1].suit == hand[2].suit
     }
+    private var isAKQ : Bool {
+        return hand[0].rank == .ace && hand[1].rank == .queen && hand[2].rank == .king
+    }
+    private var isA23 : Bool {
+        return hand[0].rank == .ace && hand[1].rank == .two && hand[2].rank == .three
+    }
+
     private var isRun : Bool {
-        //Check for QKA
-        if hand[0].rank == .ace && hand[1].rank == .queen && hand[2].rank == .king {
+        if isAKQ {
             return true
         }
-
         let rank1 = hand[0].rank.rawValue + 2
         let rank2 = hand[1].rank.rawValue + 1
         let rank3 = hand[2].rank.rawValue
@@ -80,41 +85,47 @@ struct HandResolver {
         return .high
     }
     
-    private func scorePrial() -> Int {
-        return 0x05000000 + highestCard.rank.score()
+    private func calculateScore(type : BragHandTypes) -> Int {
+        switch type {
+        case .high:
+            return 0x00000000 + cardRankScore
+        case .pair:
+            return 0x01000000 + scorePair()
+        case .flush:
+            return 0x02000000 + cardRankScore
+        case .run:
+            return 0x03000000 + scoreRun
+        case .trotter:
+            return 0x04000000 + scoreRun
+        case .prial:
+            return 0x05000000 + scorePrial()
+        }
     }
-    private func scoreTrotter() -> Int {
-        return 0x04000000
-    }
-    private func scoreRun() -> Int {
-        return 0x03000000
-    }
-    private func scoreFlush() -> Int {
-        return 0x02000000
-    }
-    private func scorePair() -> Int {
-        return 0x01000000
-    }
-    private func scoreHigh() -> Int {
+    ///0x00[High][Middle][Lowest]
+    private var cardRankScore : Int {
         return scoreSortedHand[0].rank.score()  +
         scoreSortedHand[1].rank.score()<<8 +
         scoreSortedHand[2].rank.score()<<16
     }
-
-    private func calculateScore(type : BragHandTypes) -> Int {
-        switch type {
-        case .high:
-            return scoreHigh()
-        case .pair:
-            return scorePair()
-        case .flush:
-            return scoreFlush()
-        case .run:
-            return scoreRun()
-        case .trotter:
-            return scoreTrotter()
-        case .prial:
-            return scorePrial()
+    ///A23, AKQ, then highest scoring card
+    private var scoreRun : Int {
+        if isA23 {
+            return 0xff
         }
+        return scoreSortedHand[2].rank.score()
+    }
+    ///333, AAA ... highest scoring card
+    private func scorePrial() -> Int {
+        if hand[0].rank == .three{
+            return 0x05ffffff
+        }
+        return highestCard.rank.score()
+    }
+    private func scorePair() -> Int {
+        //In a sorted hand the middle card is part of the pair
+        let pairScore = hand[1].rank.score()
+        //First or Last card is the high, add both together
+        let highScore = hand[0].rank.score() + hand[2].rank.score()
+        return pairScore<<16 + highScore
     }
 }

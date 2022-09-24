@@ -38,10 +38,10 @@ class HandResolverTests: XCTestCase {
     let AKQRun = [PlayingCard(suit: .clubs, rank: .king),
                 PlayingCard(suit: .diamonds, rank: .ace),
                 PlayingCard(suit: .diamonds, rank: .queen)]
-    let Weetabix456Run = [PlayingCard(suit: .clubs, rank: .two),
-                PlayingCard(suit: .spades, rank: .three),
+    let Weetabix456Run = [PlayingCard(suit: .clubs, rank: .five),
+                PlayingCard(suit: .spades, rank: .six),
                 PlayingCard(suit: .hearts, rank: .four)]
-    let Beehive345Run = [PlayingCard(suit: .clubs, rank: .two),
+    let Beehive345Run = [PlayingCard(suit: .clubs, rank: .five),
                 PlayingCard(suit: .spades, rank: .three),
                 PlayingCard(suit: .hearts, rank: .four)]
 
