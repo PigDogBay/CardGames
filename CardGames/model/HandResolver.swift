@@ -11,12 +11,17 @@ enum BragHandTypes : Int32 {
     case high, pair, flush, run, trotter, prial
 }
 
-struct BragHandScore {
+struct BragHandScore : Comparable, Equatable {
     let type : BragHandTypes
     let score : Int
+
+    static func < (lhs: BragHandScore, rhs: BragHandScore) -> Bool {
+        return lhs.score < rhs.score
+    }
 }
 
 struct HandResolver {
+  
     let hand : [PlayingCard]
     let scoreSortedHand : [PlayingCard]
     
