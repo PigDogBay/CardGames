@@ -7,11 +7,80 @@
 
 import Foundation
 
+
+enum GameState {
+    case setUp, selectDealer, deal, play, scoreRound, updateLives, gameOver
+}
+
 class Model {
     
     let deck = Deck()
     let middle = PlayerHand()
     var players = [Player]()
+    var gameState : GameState = .setUp
+    
+    func computerMakeGame(){
+        while(gameState != .gameOver){
+            updateDisplay()
+            updateState()
+        }
+        if let winner = players.first {
+            print("Winner is \(winner.name) with \(winner.lives) lives remaining")
+        }
+    }
+
+    
+    func updateState(){
+        switch gameState {
+        case .setUp:
+            setUpGame()
+            gameState = .selectDealer
+        case .selectDealer:
+            stashAll()
+            deck.shuffle()
+            gameState = .deal
+        case .deal:
+            deal()
+            gameState = .play
+        case .play:
+            playRound()
+            gameState = .scoreRound
+        case .scoreRound:
+            scoreRound()
+            gameState = .updateLives
+        case .updateLives:
+            removeLosers()
+            gameState = isGameWon() ? .gameOver : .selectDealer
+        case .gameOver:
+            break
+        }
+    }
+    
+    func updateDisplay(){
+        switch gameState {
+        case .setUp:
+            print("Setting up")
+        case .selectDealer:
+            print("Selecting the dealar")
+
+        case .deal:
+            print("Dealing")
+
+        case .play:
+            print("Playing")
+
+        case .scoreRound:
+            displayHands()
+            print("End of Round")
+
+        case .updateLives:
+            print("Updating lives")
+
+        case .gameOver:
+            print("GAME OVER")
+
+        }
+    }
     
     func setUpGame(){
         deck.createDeck()
@@ -54,7 +123,6 @@ class Model {
         }
     }
     
-    
     /// Find losing hand and lose player a life
     func scoreRound(){
         if let loser = players.min(by: {a,b in a.hand.score < b.hand.score}) {
@@ -71,24 +139,4 @@ class Model {
     func isGameWon() -> Bool{
         return players.count < 2
     }
-
-    
-    func computerMakeGame(){
-        setUpGame()
-        while(!isGameWon()){
-            deal()
-            print("Start of Round")
-            displayHands()
-            playRound()
-            scoreRound()
-            print("End of Round")
-            displayHands()
-            removeLosers()
-            stashAll()
-        }
-        if let winner = players.first {
-            print("Winner is \(winner.name) with \(winner.lives) lives remaining")
-        }
-    }
-    
 }
