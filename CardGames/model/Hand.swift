@@ -11,9 +11,9 @@ import Foundation
 class PlayerHand {
     var hand = [PlayingCard]()
     
-    var score : Int {
+    var score : BragHandScore {
         let resolver = HandResolver(hand: hand)
-        return resolver.createScore().score
+        return resolver.createScore()
     }
     
     func receive(card : PlayingCard){

@@ -29,8 +29,30 @@ class School {
         }
     }
     
+    func resolveHands(){
+        players.forEach{
+            $0.resolveHand()
+        }
+    }
+    
+    func isPrialOut() -> Bool{
+        return !players.filter{$0.score.type == .prial}
+            .isEmpty
+    }
+    
+    ///Needed to find player with largest Prial
+    func highestScoringPlayer() -> Player? {
+        return players.max(by: {$0.score < $1.score})
+    }
+    
     func determineLosingHands() -> [Player]? {
-        return Dictionary(grouping: players, by:  {$0.hand.score})
+        if isPrialOut(){
+            let topPlayer = highestScoringPlayer()
+            //"Prial out, everyone (else) out!" cries the top player
+            return players.filter{$0.name != topPlayer?.name}
+            
+        }
+        return Dictionary(grouping: players, by:  {$0.score.score})
             .min(by: {$0.key < $1.key})
             .map{$0.value}
     }

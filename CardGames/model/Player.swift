@@ -13,6 +13,7 @@ class Player {
     let name : String
     let hand = PlayerHand()
     var lives = 3
+    var score = BragHandScore(type: .high, score: 0)
     
     init(name : String){
         self.name = name
@@ -24,6 +25,10 @@ class Player {
         let middleCard = middle.hand.removeFirst()
         hand.receive(card: middleCard)
         middle.receive(card: myCard)
+    }
+    
+    func resolveHand(){
+        score = hand.score
     }
 }
 
