@@ -56,4 +56,11 @@ class School {
             .min(by: {$0.key < $1.key})
             .map{$0.value}
     }
+    
+    func removePlayersWithNoLivesLeft() {
+        let remaining = players.filter{$0.lives>0}
+        players.removeAll()
+        players.append(contentsOf: remaining)
+    }
+    
 }

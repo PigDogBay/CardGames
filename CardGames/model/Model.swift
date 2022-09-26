@@ -20,7 +20,7 @@ class Model {
     
     let deck = Deck()
     let middle = PlayerHand()
-    var players = [Player]()
+    let school = School()
     var gameState : GameState = .setUp
     var listener : GameUpdateListener? = nil
     
@@ -29,7 +29,7 @@ class Model {
             listener?.update(gameState: gameState)
             updateState()
         }
-        if let winner = players.first {
+        if let winner = school.players.first {
             print("Winner is \(winner.name) with \(winner.lives) lives remaining")
         }
     }
@@ -53,7 +53,7 @@ class Model {
             scoreRound()
             gameState = .updateLives
         case .updateLives:
-            removeLosers()
+            school.removePlayersWithNoLivesLeft()
             gameState = isGameWon() ? .gameOver : .selectDealer
         case .gameOver:
             break
@@ -63,25 +63,17 @@ class Model {
     func setUpGame(){
         deck.createDeck()
         deck.shuffle()
-        players.removeAll()
-        players.append(contentsOf: [PLAYER_CHRIS,PLAYER_LEON, PLAYER_BOMBER, PLAYER_HOWE])
-        //Set up lives
-        players.forEach{
-            $0.lives = 3
-        }
-
+        school.setUpPlayers()
     }
     
     func stashAll(){
-        players.forEach{
-            deck.receive(cards: $0.hand.stash())
-        }
+        school.stashCards(deck: deck)
         deck.receive(cards: middle.stash())
     }
     
     func deal(){
         for _ in 1...3 {
-            players.forEach{
+            school.players.forEach{
                 $0.hand.receive(card: deck.deal())
             }
             middle.receive(card: deck.deal())
@@ -89,25 +81,21 @@ class Model {
     }
     
     func playRound(){
-        players.forEach{
+        school.players.forEach{
             $0.play(middle: middle)
         }
     }
     
     /// Find losing hand and lose player a life
     func scoreRound(){
-        if let loser = players.min(by: {a,b in a.hand.score < b.hand.score}) {
-            loser.lives = loser.lives - 1
+        school.resolveHands()
+        school.determineLosingHands()?.forEach{
+            $0.lives = $0.lives - 1
         }
-    }
-    
-    func removeLosers(){
-        let remaining = players.filter{$0.lives>0}
-        players.removeAll()
-        players.append(contentsOf: remaining)
+        //TODO, don't lose lives if it means 0 players left in the game!!
     }
     
     func isGameWon() -> Bool{
-        return players.count < 2
+        return school.players.count < 2
     }
 }

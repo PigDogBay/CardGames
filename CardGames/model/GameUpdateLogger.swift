@@ -34,7 +34,7 @@ class GameUpdateLogger : GameUpdateListener {
     
     func displayHands(){
         print("Middle: \t\(model.middle.display())")
-        model.players.forEach{
+        model.school.players.forEach{
             print("\($0.name): \t\($0.hand.display()) \tLives:\($0.lives)")
         }
     }
