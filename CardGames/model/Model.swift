@@ -12,23 +12,27 @@ enum GameState {
     case setUp, selectDealer, deal, play, scoreRound, updateLives, gameOver
 }
 
+protocol GameUpdateListener {
+    func update(gameState : GameState)
+}
+
 class Model {
     
     let deck = Deck()
     let middle = PlayerHand()
     var players = [Player]()
     var gameState : GameState = .setUp
+    var listener : GameUpdateListener? = nil
     
     func computerMakeGame(){
         while(gameState != .gameOver){
-            updateDisplay()
+            listener?.update(gameState: gameState)
             updateState()
         }
         if let winner = players.first {
             print("Winner is \(winner.name) with \(winner.lives) lives remaining")
         }
     }
-
     
     func updateState(){
         switch gameState {
@@ -53,32 +57,6 @@ class Model {
             gameState = isGameWon() ? .gameOver : .selectDealer
         case .gameOver:
             break
-        }
-    }
-    
-    func updateDisplay(){
-        switch gameState {
-        case .setUp:
-            print("Setting up")
-        case .selectDealer:
-            print("Selecting the dealar")
-
-        case .deal:
-            print("Dealing")
-
-        case .play:
-            print("Playing")
-
-        case .scoreRound:
-            displayHands()
-            print("End of Round")
-
-        case .updateLives:
-            print("Updating lives")
-
-        case .gameOver:
-            print("GAME OVER")
-
         }
     }
     
@@ -113,13 +91,6 @@ class Model {
     func playRound(){
         players.forEach{
             $0.play(middle: middle)
-        }
-    }
-    
-    func displayHands(){
-        print("Middle: \t\(middle.display())")
-        players.forEach{
-            print("\($0.name): \t\($0.hand.display()) \tScore: \($0.hand.score) \tLives:\($0.lives)")
         }
     }
     
