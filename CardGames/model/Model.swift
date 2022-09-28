@@ -12,23 +12,17 @@ enum GameState {
     case setUp, selectDealer, deal, play, scoreRound, updateLives, gameOver
 }
 
-protocol GameUpdateListener {
-    func update(gameState : GameState)
-}
-
 class Model {
     
     let deck = Deck()
     let middle = PlayerHand()
     let school = School()
     var gameState : GameState = .setUp
-    var updateListener : GameUpdateListener? = nil
     var gameListener : GameListener? = nil
     var nextPlayer : Player? = nil
     
     func computerMakeGame(){
         while(gameState != .gameOver){
-//            updateListener?.update(gameState: gameState)
             updateState()
         }
         if let winner = school.players.first {

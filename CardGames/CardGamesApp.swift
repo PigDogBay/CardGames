@@ -12,8 +12,7 @@ struct CardGamesApp: App {
     
     func startGame(){
         let model = Model()
-        let listener = GameUpdateLogger(model: model)
-        model.updateListener = listener
+        let listener = GameUpdateLogger()
         model.gameListener = listener
         model.computerMakeGame()
     }

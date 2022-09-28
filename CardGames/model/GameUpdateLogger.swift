@@ -7,11 +7,7 @@
 
 import Foundation
 
-class GameUpdateLogger : GameUpdateListener, GameListener {
-    let model : Model
-    init (model : Model){
-        self.model = model
-    }
+class GameUpdateLogger : GameListener {
 
     func dealerSelected(dealer: Player) {
         print("\n\(dealer.name) is Dealing")
@@ -41,34 +37,6 @@ class GameUpdateLogger : GameUpdateListener, GameListener {
     
     func gameOver(winner: Player) {
         print("Winner is \(winner.name) with \(winner.lives) lives remaining")
-    }
-    
-    func update(gameState: GameState) {
-        switch gameState {
-        case .setUp:
-            print("Setting up")
-        case .selectDealer:
-            print("Selecting the dealer")
-        case .deal:
-            print("\(model.school.dealer?.name ?? "") is Dealing")
-        case .play:
-            print("Playing")
-            displayHands()
-        case .scoreRound:
-            displayHands()
-            print("End of Round")
-        case .updateLives:
-            print("Updating lives")
-        case .gameOver:
-            print("GAME OVER")
-        }
-    }
-    
-    func displayHands(){
-        print("Middle: \t\(model.middle.display())")
-        model.school.players.forEach{
-            print("\($0.name): \t\($0.hand.display()) \tLives:\($0.lives)")
-        }
     }
     
     func concatenatePlayerNames(players : [Player]) -> String {
