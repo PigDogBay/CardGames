@@ -17,9 +17,9 @@ class GameUpdateLogger : GameUpdateListener {
         case .setUp:
             print("Setting up")
         case .selectDealer:
-            print("Selecting the dealar")
+            print("Selecting the dealer")
         case .deal:
-            print("Dealing")
+            print("\(model.school.dealer?.name ?? "") is Dealing")
         case .play:
             print("Playing")
         case .scoreRound:

@@ -73,6 +73,7 @@ class Model {
     }
     
     func deal(){
+        //Deal 3 cards each and 3 in the middle
         for _ in 1...3 {
             school.players.forEach{
                 $0.hand.receive(card: deck.deal())
@@ -82,9 +83,12 @@ class Model {
     }
     
     func playRound(){
-        school.players.forEach{
-            $0.play(middle: middle)
-        }
+        //dealer goes last
+        var nextPlayer = school.dealer
+        repeat {
+            nextPlayer = school.nextPlayer(current: nextPlayer!)
+            nextPlayer?.play(middle: middle)
+        } while nextPlayer != school.dealer
     }
     
     /// Find losing hand and lose player a life

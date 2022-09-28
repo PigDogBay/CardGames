@@ -9,7 +9,7 @@ import Foundation
 
 
 
-class Player {
+class Player : Equatable {
     let name : String
     let hand = PlayerHand()
     var lives = 3
@@ -30,6 +30,11 @@ class Player {
     
     func resolveHand(){
         score = hand.score
+    }
+    
+    ///Equatable, each player must have an unique seat
+    static func == (lhs: Player, rhs: Player) -> Bool {
+        return lhs.seat == rhs.seat
     }
 }
 
