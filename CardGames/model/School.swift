@@ -38,6 +38,14 @@ class School {
             .min(by: {$0.seat < $1.seat})
     }
     
+    func nextDealer(){
+        if let current = dealer {
+            if let next = nextPlayer(current: current){
+                dealer = next
+            }
+        }
+    }
+    
     func getPlayer(name : String) -> Player?{
         return players.first(where: {$0.name == name})
     }

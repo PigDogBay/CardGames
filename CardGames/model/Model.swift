@@ -40,6 +40,7 @@ class Model {
             setUpGame()
             gameState = .selectDealer
         case .selectDealer:
+            school.nextDealer()
             stashAll()
             deck.shuffle()
             gameState = .deal
