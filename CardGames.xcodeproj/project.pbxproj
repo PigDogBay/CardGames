@@ -26,6 +26,7 @@
 		007A08DE28E1AFDF00B1281A /* School.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A08DD28E1AFDF00B1281A /* School.swift */; };
 		007A08E128E1B70D00B1281A /* SchoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A08E028E1B70D00B1281A /* SchoolTests.swift */; };
 		007A08E328E1B76A00B1281A /* ExampleHands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A08E228E1B76A00B1281A /* ExampleHands.swift */; };
+		00A0BE7C28E4965300D59A4A /* GameListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A0BE7B28E4965300D59A4A /* GameListener.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		007A08DD28E1AFDF00B1281A /* School.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = School.swift; sourceTree = "<group>"; };
 		007A08E028E1B70D00B1281A /* SchoolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolTests.swift; sourceTree = "<group>"; };
 		007A08E228E1B76A00B1281A /* ExampleHands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleHands.swift; sourceTree = "<group>"; };
+		00A0BE7B28E4965300D59A4A /* GameListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListener.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 				002AA7D528CB497D00AFAEEB /* PlayingCard.swift */,
 				007A08DB28E1A93F00B1281A /* GameUpdateLogger.swift */,
 				007A08DD28E1AFDF00B1281A /* School.swift */,
+				00A0BE7B28E4965300D59A4A /* GameListener.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00A0BE7C28E4965300D59A4A /* GameListener.swift in Sources */,
 				002AA7AD28CB478B00AFAEEB /* ContentView.swift in Sources */,
 				002AA7D628CB497D00AFAEEB /* PlayingCard.swift in Sources */,
 				002AA7E528CCEC8000AFAEEB /* HandResolver.swift in Sources */,

@@ -22,16 +22,17 @@ class Model {
     let middle = PlayerHand()
     let school = School()
     var gameState : GameState = .setUp
-    var listener : GameUpdateListener? = nil
+    var updateListener : GameUpdateListener? = nil
+    var gameListener : GameListener? = nil
     var nextPlayer : Player? = nil
     
     func computerMakeGame(){
         while(gameState != .gameOver){
-            listener?.update(gameState: gameState)
+//            updateListener?.update(gameState: gameState)
             updateState()
         }
         if let winner = school.players.first {
-            print("Winner is \(winner.name) with \(winner.lives) lives remaining")
+            gameListener?.gameOver(winner: winner)
         }
     }
     
@@ -44,6 +45,7 @@ class Model {
             school.nextDealer()
             stashAll()
             deck.shuffle()
+            gameListener?.dealerSelected(dealer: school.dealer!)
             gameState = .deal
         case .deal:
             deal()
@@ -56,7 +58,6 @@ class Model {
             gameState = .updateLives
         case .updateLives:
             updateLives()
-            gameState = isGameWon() ? .gameOver : .selectDealer
         case .gameOver:
             break
         }
@@ -85,7 +86,9 @@ class Model {
     
     func playRound(){
         nextPlayer = school.nextPlayer(current: nextPlayer!)
+        gameListener?.turnStarted(player: nextPlayer!, middle: middle)
         nextPlayer?.play(middle: middle)
+        gameListener?.turnEnded(player: nextPlayer!, middle: middle)
         if nextPlayer == school.dealer {
             //dealer is last player
             gameState = .scoreRound
@@ -95,16 +98,23 @@ class Model {
     /// Find losing hand and lose player a life
     func scoreRound(){
         school.resolveHands()
-        school.determineLosingHands()?.forEach{
-            $0.lives = $0.lives - 1
+        if let losingPlayers = school.determineLosingHands(){
+            losingPlayers.forEach{
+                $0.lives = $0.lives - 1
+            }
+            gameListener?.roundEnded(losingPlayers: losingPlayers)
         }
     }
     func updateLives(){
+        let pegPullers = school.playersWithNoLivesLeft()
+        gameListener?.pullThePeg(outPlayers: pegPullers)
         school.removePlayersWithNoLivesLeft()
         if school.areAllPlayersOut() {
             //Oops no one won, so play another round
             school.reinstatePlayers()
+            gameListener?.everyoneOutSoReplayRound()
         }
+        gameState = isGameWon() ? .gameOver : .selectDealer
     }
     
     func isGameWon() -> Bool{

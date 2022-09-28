@@ -84,6 +84,10 @@ class School {
             .map{$0.value}
     }
     
+    func playersWithNoLivesLeft() -> [Player]{
+        players.filter{$0.lives == 0}
+    }
+    
     func removePlayersWithNoLivesLeft() {
         let remaining = players.filter{$0.lives>0}
         players.removeAll()
