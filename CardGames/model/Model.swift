@@ -23,6 +23,7 @@ class Model {
     let school = School()
     var gameState : GameState = .setUp
     var listener : GameUpdateListener? = nil
+    var nextPlayer : Player? = nil
     
     func computerMakeGame(){
         while(gameState != .gameOver){
@@ -47,9 +48,9 @@ class Model {
         case .deal:
             deal()
             gameState = .play
+            nextPlayer = school.dealer
         case .play:
             playRound()
-            gameState = .scoreRound
         case .scoreRound:
             scoreRound()
             gameState = .updateLives
@@ -83,12 +84,12 @@ class Model {
     }
     
     func playRound(){
-        //dealer goes last
-        var nextPlayer = school.dealer
-        repeat {
-            nextPlayer = school.nextPlayer(current: nextPlayer!)
-            nextPlayer?.play(middle: middle)
-        } while nextPlayer != school.dealer
+        nextPlayer = school.nextPlayer(current: nextPlayer!)
+        nextPlayer?.play(middle: middle)
+        if nextPlayer == school.dealer {
+            //dealer is last player
+            gameState = .scoreRound
+        }
     }
     
     /// Find losing hand and lose player a life

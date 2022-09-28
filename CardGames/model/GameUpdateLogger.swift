@@ -22,6 +22,7 @@ class GameUpdateLogger : GameUpdateListener {
             print("\(model.school.dealer?.name ?? "") is Dealing")
         case .play:
             print("Playing")
+            displayHands()
         case .scoreRound:
             displayHands()
             print("End of Round")
