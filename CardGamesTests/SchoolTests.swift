@@ -58,6 +58,12 @@ final class SchoolTests: XCTestCase {
         XCTAssertTrue(school.isPrialOut())
         XCTAssertEqual(school.highestScoringPlayer()?.name, PLAYER_CHRIS.name)
     }
-
+    
+    func testareAllPlayersOut1() throws {
+        let school = School()
+        school.setUpPlayers()
+        school.players.forEach{$0.lives = 0}
+        XCTAssertTrue(school.areAllPlayersOut())
+    }
 
 }

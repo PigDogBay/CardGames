@@ -53,7 +53,7 @@ class Model {
             scoreRound()
             gameState = .updateLives
         case .updateLives:
-            school.removePlayersWithNoLivesLeft()
+            updateLives()
             gameState = isGameWon() ? .gameOver : .selectDealer
         case .gameOver:
             break
@@ -92,7 +92,13 @@ class Model {
         school.determineLosingHands()?.forEach{
             $0.lives = $0.lives - 1
         }
-        //TODO, don't lose lives if it means 0 players left in the game!!
+    }
+    func updateLives(){
+        school.removePlayersWithNoLivesLeft()
+        if school.areAllPlayersOut() {
+            //Oops no one won, so play another round
+            school.reinstatePlayers()
+        }
     }
     
     func isGameWon() -> Bool{

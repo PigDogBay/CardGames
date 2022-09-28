@@ -63,4 +63,14 @@ class School {
         players.append(contentsOf: remaining)
     }
     
+    func areAllPlayersOut() -> Bool {
+        players.filter{$0.lives != 0}.count == 0
+    }
+    ///If all players had the same hand and so are all out
+    ///then no one has won the game, so this round needs
+    ///to be replayed, give the remaining players 1 life back.
+    func reinstatePlayers() {
+        players.forEach{$0.lives = 1}
+    }
+    
 }
