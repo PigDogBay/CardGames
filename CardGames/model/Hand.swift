@@ -7,6 +7,16 @@
 
 import Foundation
 
+///Player can swap one card with the middle or all 3
+enum Turn {
+    case swap(hand : PlayingCard, middle : PlayingCard)
+    case all
+}
+
+struct ScoredTurn {
+    let turn : Turn
+    let score : BragHandScore
+}
 
 class PlayerHand {
     var hand = [PlayingCard]()
@@ -31,4 +41,24 @@ class PlayerHand {
         hand.removeAll()
         return stash
     }
+    
+    func createdScoredTurn(_ playerCard : PlayingCard,_ middleCard : PlayingCard) -> ScoredTurn {
+        //TODO generate the hand
+        return ScoredTurn(
+            turn: .swap(hand: playerCard, middle: middleCard),
+            score: BragHandScore(type: .prial, score: 0))
+    }
+    
+    func generatePossibleTurns(middle : PlayerHand) -> [ScoredTurn] {
+        var turns = [ScoredTurn]()
+        hand.forEach{ playerCard in
+            middle.hand.forEach{middleCard in
+                turns.append(createdScoredTurn(playerCard, middleCard))
+            }
+        }
+        //Finally swap all 3
+        turns.append(ScoredTurn(turn: .all, score: middle.score))
+        return turns
+    }
+
 }
