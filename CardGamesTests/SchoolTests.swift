@@ -65,5 +65,15 @@ final class SchoolTests: XCTestCase {
         school.players.forEach{$0.lives = 0}
         XCTAssertTrue(school.areAllPlayersOut())
     }
+    
+    ///Order: [PLAYER_CHRIS, PLAYER_LEON, PLAYER_BOMBER, PLAYER_HOWE]
+    func testNextPlayer1() throws {
+        let school = School()
+        school.setUpPlayers()
+        XCTAssertEqual(PLAYER_LEON.name, school.nextPlayer(current: PLAYER_CHRIS)?.name)
+        XCTAssertEqual(PLAYER_CHRIS.name, school.nextPlayer(current: PLAYER_HOWE)?.name)
+        XCTAssertEqual(PLAYER_BOMBER.name, school.nextPlayer(current: PLAYER_LEON)?.name)
+        XCTAssertEqual(PLAYER_HOWE.name, school.nextPlayer(current: PLAYER_BOMBER)?.name)
+    }
 
 }

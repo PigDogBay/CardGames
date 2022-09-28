@@ -14,6 +14,7 @@ class Player {
     let hand = PlayerHand()
     var lives = 3
     var score = BragHandScore(type: .high, score: 0)
+    var seat = 0
     
     init(name : String){
         self.name = name

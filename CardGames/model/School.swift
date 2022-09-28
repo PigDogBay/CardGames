@@ -9,14 +9,33 @@ import Foundation
 
 class School {
     var players = [Player]()
+    var dealer : Player? = nil
 
     func setUpPlayers(){
         players.removeAll()
         players.append(contentsOf: [PLAYER_CHRIS, PLAYER_LEON, PLAYER_BOMBER, PLAYER_HOWE])
-        //Set up lives
+        //Set up lives and seat positions
+        var seat = 0
         players.forEach{
             $0.lives = 3
+            $0.seat = seat
+            seat = seat + 1
         }
+        dealer = players.randomElement()
+    }
+
+    ///The next player is the seat after the current player (the player's left / clockwise)
+    ///If no seats left, start back round at the lowest seat, like a circular buffer
+    func nextPlayer(current : Player) -> Player? {
+        let next = players
+            .filter{$0.seat > current.seat}
+            .min(by: {$0.seat < $1.seat})
+        if let n = next {
+            return n
+        }
+        //Start back at min seat pos
+        return players
+            .min(by: {$0.seat < $1.seat})
     }
     
     func getPlayer(name : String) -> Player?{
@@ -66,6 +85,7 @@ class School {
     func areAllPlayersOut() -> Bool {
         players.filter{$0.lives != 0}.count == 0
     }
+    
     ///If all players had the same hand and so are all out
     ///then no one has won the game, so this round needs
     ///to be replayed, give the remaining players 1 life back.
