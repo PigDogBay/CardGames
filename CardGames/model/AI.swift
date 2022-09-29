@@ -31,6 +31,24 @@ class BestAI : AI {
     }
 }
 
+class PrialChuckerAI : AI {
+    
+    let bestAI = BestAI()
+    
+    func play(player : Player, middle: PlayerHand) -> Turn {
+        let prialInMiddle = player.hand
+            .generatePossibleTurns(middle: middle)
+            .filter{$0.middleScore.type == .prial}
+            .first
+        if let prialInMiddle = prialInMiddle {
+            print("Heehee chucking a prial in")
+            return prialInMiddle.turn
+        }
+        return bestAI.play(player: player, middle: middle)
+    }
+
+}
+
 class CheckMiddleAI : AI {
     let bestAI = BestAI()
     func play(player : Player, middle: PlayerHand) -> Turn {
