@@ -22,13 +22,26 @@ class Model {
     var nextPlayer : Player? = nil
     
     func computerMakeGame(){
-        while(gameState != .gameOver){
-            updateState()
+        for _ in 1...10000 {
+            while(gameState != .gameOver){
+                updateState()
+            }
+            if let winner = school.players.first {
+                winner.gamesWon += 1
+                gameListener?.gameOver(winner: winner)
+            }
+            gameState = .setUp
         }
-        if let winner = school.players.first {
-            gameListener?.gameOver(winner: winner)
-        }
+        printStats(PLAYER_BOMBER)
+        printStats(PLAYER_HOWE)
+        printStats(PLAYER_LEON)
+        printStats(PLAYER_CHRIS)
     }
+    
+    func printStats(_ player : Player){
+        print("\(player.name) \(player.gamesWon)")
+    }
+    
     
     func updateState(){
         switch gameState {

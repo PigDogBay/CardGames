@@ -29,5 +29,20 @@ class BestAI : AI {
             .max(by: {$0.score < $1.score})!
             .turn
     }
+}
 
+class CheckMiddleAI : AI {
+    let bestAI = BestAI()
+    func play(player : Player, middle: PlayerHand) -> Turn {
+        let worseMiddle = player
+            .hand
+            .generatePossibleTurns(middle: middle)
+            .filter{$0.score > $0.middleScore}
+        if !worseMiddle.isEmpty {
+            return worseMiddle
+                .max(by: {$0.score < $1.score})!
+                .turn
+        }
+        return bestAI.play(player: player, middle: middle)
+    }
 }

@@ -45,3 +45,13 @@ class GameUpdateLogger : GameListener {
         }
     }
 }
+
+class NullLogger : GameListener {
+    func dealerSelected(dealer: Player) {}
+    func turnStarted(player: Player, middle: PlayerHand) {}
+    func turnEnded(player: Player, middle: PlayerHand, turn: Turn) {}
+    func roundEnded(losingPlayers: [Player]) {}
+    func pullThePeg(outPlayers: [Player]) {}
+    func everyoneOutSoReplayRound() {}
+    func gameOver(winner: Player) {}
+}

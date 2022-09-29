@@ -16,6 +16,7 @@ class Player : Equatable {
     var score = BragHandScore(type: .high, score: 0)
     var seat = 0
     let ai : AI
+    var gamesWon = 0
     
     init(name : String, ai : AI){
         self.name = name
@@ -40,6 +41,6 @@ class Player : Equatable {
 
 let PLAYER_BOMBER = Player(name: "Bomber", ai: BestAI())
 let PLAYER_HOWE = Player(name: "Howe", ai: BestAI())
-let PLAYER_CHRIS = Player(name: "Chris", ai: BestAI())
+let PLAYER_CHRIS = Player(name: "Chris", ai: CheckMiddleAI())
 let PLAYER_LEON = Player(name: "Leon", ai: BestAI())
 let PLAYER_MARK = Player(name: "Mark", ai: BestAI())
