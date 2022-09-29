@@ -10,10 +10,20 @@ import Foundation
 class School {
     var players = [Player]()
     var dealer : Player? = nil
+    
+    lazy var playerBomber : Player = Player(name: "Bomber", ai: BestAI())
+    lazy var playerChris : Player = Player(name: "Chris", ai: BestAI())
+    lazy var playerLeon : Player = Player(name: "Leon", ai: BestAI())
+    lazy var playerHowe : Player = Player(name: "Howe", ai: BestAI())
 
+    var getAllPlayers : [Player] {
+        [playerChris, playerHowe, playerLeon, playerBomber]
+    }
+        
     func setUpPlayers(){
         players.removeAll()
-        players.append(contentsOf: [PLAYER_CHRIS, PLAYER_LEON, PLAYER_BOMBER, PLAYER_HOWE])
+        players.append(contentsOf: getAllPlayers)
+        players.shuffle()
         //Set up lives and seat positions
         var seat = 0
         players.forEach{

@@ -32,10 +32,9 @@ class Model {
             }
             gameState = .setUp
         }
-        printStats(PLAYER_BOMBER)
-        printStats(PLAYER_HOWE)
-        printStats(PLAYER_LEON)
-        printStats(PLAYER_CHRIS)
+        school.getAllPlayers
+            .sorted(by: {$0.gamesWon < $1.gamesWon})
+            .forEach{printStats($0)}
     }
     
     func printStats(_ player : Player){

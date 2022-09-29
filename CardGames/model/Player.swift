@@ -38,9 +38,3 @@ class Player : Equatable {
         return lhs.seat == rhs.seat
     }
 }
-
-let PLAYER_BOMBER = Player(name: "Bomber", ai: BestAI())
-let PLAYER_HOWE = Player(name: "Howe", ai: BestAI())
-let PLAYER_CHRIS = Player(name: "Chris", ai: PrialChuckerAI())
-let PLAYER_LEON = Player(name: "Leon", ai: BestAI())
-let PLAYER_MARK = Player(name: "Mark", ai: BestAI())
