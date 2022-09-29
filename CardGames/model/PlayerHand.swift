@@ -71,6 +71,19 @@ class PlayerHand {
         }
     }
     
+    func play(turn : Turn, middle : PlayerHand){
+        switch turn {
+        case .swap(hand: let handCard, middle: let middleCard):
+            replace(cardInHand: handCard, with: middleCard)
+            middle.replace(cardInHand: middleCard, with: handCard)
+        case .all:
+            let tmp = self.hand
+            self.hand = middle.hand
+            middle.hand = self.hand
+        }
+    }
+    
+    
     private func createdScoredTurn(_ middle : PlayerHand, _ playerCard : PlayingCard,_ middleCard : PlayingCard) -> ScoredTurn {
         let possibleHand = PlayerHand(hand: self.hand)
         possibleHand.replace(cardInHand: playerCard, with: middleCard)

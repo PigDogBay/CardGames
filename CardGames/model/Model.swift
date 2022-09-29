@@ -81,8 +81,8 @@ class Model {
     func playRound(){
         nextPlayer = school.nextPlayer(current: nextPlayer!)
         gameListener?.turnStarted(player: nextPlayer!, middle: middle)
-        nextPlayer?.play(middle: middle)
-        gameListener?.turnEnded(player: nextPlayer!, middle: middle)
+        let turn = nextPlayer?.play(middle: middle)
+        gameListener?.turnEnded(player: nextPlayer!, middle: middle, turn: turn!)
         if nextPlayer == school.dealer {
             //dealer is last player
             gameState = .scoreRound

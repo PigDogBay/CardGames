@@ -17,8 +17,8 @@ class GameUpdateLogger : GameListener {
         print("Turn: \(player.name)(\(player.lives)): \t\(player.hand.display()).    Middle: \(middle.display())")
     }
     
-    func turnEnded(player: Player, middle: PlayerHand) {
-        print("TEnd: \(player.name)(\(player.lives)): \t\(player.hand.display()).    Middle: \(middle.display())")
+    func turnEnded(player: Player, middle: PlayerHand, turn : Turn) {
+        print("TEnd: \(player.name)(\(player.lives)): \t\(player.hand.display()).    Middle: \(middle.display()).   \(turn.display())")
     }
     
     func roundEnded(losingPlayers: [Player]) {
