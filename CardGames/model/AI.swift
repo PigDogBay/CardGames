@@ -20,3 +20,14 @@ class RandomAI : AI{
             .randomElement()!
     }
 }
+
+class BestAI : AI {
+    func play(player : Player, middle: PlayerHand) -> Turn {
+        return player
+            .hand
+            .generatePossibleTurns(middle: middle)
+            .max(by: {$0.score < $1.score})!
+            .turn
+    }
+
+}

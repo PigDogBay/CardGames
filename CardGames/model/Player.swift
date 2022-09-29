@@ -38,8 +38,8 @@ class Player : Equatable {
     }
 }
 
-let PLAYER_BOMBER = Player(name: "Bomber", ai: RandomAI())
-let PLAYER_HOWE = Player(name: "Howe", ai: RandomAI())
-let PLAYER_CHRIS = Player(name: "Chris", ai: RandomAI())
-let PLAYER_LEON = Player(name: "Leon", ai: RandomAI())
-let PLAYER_MARK = Player(name: "Mark", ai: RandomAI())
+let PLAYER_BOMBER = Player(name: "Bomber", ai: BestAI())
+let PLAYER_HOWE = Player(name: "Howe", ai: BestAI())
+let PLAYER_CHRIS = Player(name: "Chris", ai: BestAI())
+let PLAYER_LEON = Player(name: "Leon", ai: BestAI())
+let PLAYER_MARK = Player(name: "Mark", ai: BestAI())
