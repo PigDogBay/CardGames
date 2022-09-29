@@ -168,14 +168,14 @@
 			children = (
 				00A0BE8128E5A8B900D59A4A /* AI.swift */,
 				002AA7DE28CB51B800AFAEEB /* Deck.swift */,
-				002AA7E028CB54DA00AFAEEB /* PlayerHand.swift */,
+				00A0BE7B28E4965300D59A4A /* GameListener.swift */,
+				007A08DB28E1A93F00B1281A /* GameUpdateLogger.swift */,
 				002AA7E428CCEC8000AFAEEB /* HandResolver.swift */,
 				002AA7D728CB4C0500AFAEEB /* Model.swift */,
 				002AA7E228CB8BB700AFAEEB /* Player.swift */,
+				002AA7E028CB54DA00AFAEEB /* PlayerHand.swift */,
 				002AA7D528CB497D00AFAEEB /* PlayingCard.swift */,
-				007A08DB28E1A93F00B1281A /* GameUpdateLogger.swift */,
 				007A08DD28E1AFDF00B1281A /* School.swift */,
-				00A0BE7B28E4965300D59A4A /* GameListener.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";

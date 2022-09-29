@@ -79,10 +79,9 @@ class PlayerHand {
         case .all:
             let tmp = self.hand
             self.hand = middle.hand
-            middle.hand = self.hand
+            middle.hand = tmp
         }
     }
-    
     
     private func createdScoredTurn(_ middle : PlayerHand, _ playerCard : PlayingCard,_ middleCard : PlayingCard) -> ScoredTurn {
         let possibleHand = PlayerHand(hand: self.hand)
