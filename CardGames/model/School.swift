@@ -12,7 +12,7 @@ class School {
     var dealer : Player? = nil
     
     lazy var playerBomber : Player = Player(name: "Bomber", ai: BestAI())
-    lazy var playerChris : Player = Player(name: "Chris", ai: BestAI())
+    lazy var playerChris : Player = Player(name: "Chris", ai: PrialChuckerAI(school: self))
     lazy var playerLeon : Player = Player(name: "Leon", ai: BestAI())
     lazy var playerHowe : Player = Player(name: "Howe", ai: BestAI())
 
