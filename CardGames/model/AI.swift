@@ -33,8 +33,8 @@ class PrialChuckerAI : AI {
     private let school : School
     private let bestAI = BestAI()
     private let lowHand = [PlayingCard(suit: .clubs, rank: .two),
-                           PlayingCard(suit: .diamonds, rank: .jack),
-                           PlayingCard(suit: .hearts, rank: .jack)]
+                           PlayingCard(suit: .diamonds, rank: .eight),
+                           PlayingCard(suit: .hearts, rank: .eight)]
 
     private let lowestScoreToConsiderPrial : Int
     
