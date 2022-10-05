@@ -95,9 +95,10 @@ enum Rank : Int, CaseIterable {
 struct PlayingCard : Equatable{
     let suit : Suit
     let rank : Rank
+    var isDown = true
     
     func display() -> String {
-        return "\(suit.display())\(rank.display())"
+        return isDown ? "##" : "\(suit.display())\(rank.display())"
     }
     
     static func ==(lhs: PlayingCard, rhs: PlayingCard) -> Bool {

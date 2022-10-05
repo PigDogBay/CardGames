@@ -22,7 +22,7 @@ class Model {
     var nextPlayer : Player? = nil
     
     func computerMakeGame(){
-        for _ in 1...1000 {
+        for _ in 1...1 {
             while(gameState != .gameOver){
                 updateState()
             }
