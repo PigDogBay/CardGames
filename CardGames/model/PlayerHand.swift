@@ -23,13 +23,15 @@ class PlayerHand {
         self.init(hand: [PlayingCard]())
     }
     
-    ///Turn all cards up
-    func show(){
+    private func turnCards(isDown : Bool){
         for (index, _) in hand.enumerated(){
-            hand[index].isDown = false
+            hand[index].isDown = isDown
         }
     }
-    
+    ///Turn all cards up
+    func show(){turnCards(isDown: false)}
+    func hide(){turnCards(isDown: true)}
+
     func receive(card : PlayingCard){
         hand.append(card)
     }
@@ -44,7 +46,7 @@ class PlayerHand {
         return stash
     }
     
-    func replace(cardInHand : PlayingCard,  with : PlayingCard) {
+    private func replace(cardInHand : PlayingCard,  with : PlayingCard) {
         if let index = hand.firstIndex(of: cardInHand) {
             hand.remove(at: index)
             hand.append(with)
