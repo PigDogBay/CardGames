@@ -40,8 +40,11 @@ class Deck {
         return card
     }
     
-    func receive(cards : [PlayingCard]){
-        cards.forEach{
+    func receive(cards : [PlayingCard]) throws {
+        try cards.forEach{
+            if deck.contains($0) {
+                throw CardErrors.CardAlreadyInThePack(card: $0)
+            }
             var card = $0
             //Unbox cards
             card.isDown = true

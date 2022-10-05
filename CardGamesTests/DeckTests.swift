@@ -36,7 +36,21 @@ class DeckTests: XCTestCase {
         let deck = Deck()
         deck.createDeck()
         let card = deck.deal()
-        deck.receive(cards: [card])
+        try deck.receive(cards: [card])
+        XCTAssertEqual(deck.count, 52)
+    }
+
+    func testReceive2() throws {
+        let deck = Deck()
+        deck.createDeck()
+        let card = deck.deal()
+        try deck.receive(cards: [card])
+        XCTAssertThrowsError(try deck.receive(cards: [card])){error in
+            guard case CardErrors.CardAlreadyInThePack(let doppleGanger) = error else {
+                return XCTFail()
+            }
+            XCTAssertEqual(doppleGanger, card)
+        }
         XCTAssertEqual(deck.count, 52)
     }
 

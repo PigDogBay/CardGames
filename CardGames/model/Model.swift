@@ -76,8 +76,14 @@ class Model {
     }
     
     func stashAll(){
-        school.stashCards(deck: deck)
-        deck.receive(cards: middle.stash())
+        do {
+            try school.stashCards(deck: deck)
+            try deck.receive(cards: middle.stash())
+        } catch CardErrors.CardAlreadyInThePack(let card){
+            print("ERROR: Card already in the pack \(card)")
+        } catch {
+            print(error)
+        }
     }
     
     func deal(){

@@ -60,9 +60,9 @@ class School {
         return players.first(where: {$0.name == name})
     }
     
-    func stashCards(deck : Deck){
-        players.forEach{
-            deck.receive(cards: $0.hand.stash())
+    func stashCards(deck : Deck) throws {
+        try players.forEach{
+            try deck.receive(cards: $0.hand.stash())
         }
     }
     
