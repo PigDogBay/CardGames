@@ -23,6 +23,12 @@ class PlayerHand {
         self.init(hand: [PlayingCard]())
     }
     
+    ///Turn all cards up
+    func show(){
+        for (index, _) in hand.enumerated(){
+            hand[index].isDown = false
+        }
+    }
     
     func receive(card : PlayingCard){
         hand.append(card)

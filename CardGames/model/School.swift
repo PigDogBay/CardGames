@@ -66,6 +66,11 @@ class School {
         }
     }
     
+    func showAllHands(){
+        players.forEach{
+            $0.hand.show()
+        }
+    }
     func resolveHands(){
         players.forEach{
             $0.resolveHand()

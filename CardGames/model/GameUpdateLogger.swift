@@ -21,6 +21,13 @@ class GameUpdateLogger : GameListener {
         print("TEnd: \(player.name)(\(player.lives)): \t\(player.hand.display()).    Middle: \(middle.display()).   \(turn.display())")
     }
     
+    func showHands(players : [Player]){
+        print("Resolving hands, what has everyone got?")
+        players.forEach{ player in
+            print("\(player.name) \t\(player.hand.display())")
+        }
+    }
+    
     func roundEnded(losingPlayers: [Player]) {
         print("End of Round, losing players: \(concatenatePlayerNames(players: losingPlayers))")
     }
@@ -50,6 +57,7 @@ class NullLogger : GameListener {
     func dealerSelected(dealer: Player) {}
     func turnStarted(player: Player, middle: PlayerHand) {}
     func turnEnded(player: Player, middle: PlayerHand, turn: Turn) {}
+    func showHands(players: [Player]) {}
     func roundEnded(losingPlayers: [Player]) {}
     func pullThePeg(outPlayers: [Player]) {}
     func everyoneOutSoReplayRound() {}

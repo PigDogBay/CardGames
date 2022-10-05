@@ -109,6 +109,8 @@ class Model {
     
     /// Find losing hand and lose player a life
     func scoreRound(){
+        school.showAllHands()
+        gameListener?.showHands(players: school.players)
         school.resolveHands()
         if let losingPlayers = school.determineLosingHands(){
             losingPlayers.forEach{
