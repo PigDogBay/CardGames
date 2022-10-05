@@ -88,11 +88,11 @@ class Model {
     
     func deal(){
         //Deal 3 cards each and 3 in the middle
-        for _ in 1...3 {
+        for i in 1...3 {
             school.players.forEach{
                 $0.hand.receive(card: deck.deal())
             }
-            middle.receive(card: deck.deal(dealUp: true))
+            middle.receive(card: deck.deal(dealUp: i != 3))
         }
     }
     

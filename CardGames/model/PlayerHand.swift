@@ -35,9 +35,7 @@ class PlayerHand {
     }
     
     func display() -> String {
-        return hand.reduce(""){ acc, next in
-            acc + next.display()
-        }
+        return hand.map{$0.display()}.joined(separator: "_")
     }
     
     func stash() -> [PlayingCard] {
