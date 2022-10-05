@@ -86,7 +86,7 @@ class Model {
             school.players.forEach{
                 $0.hand.receive(card: deck.deal())
             }
-            middle.receive(card: deck.deal())
+            middle.receive(card: deck.deal(dealUp: true))
         }
     }
     

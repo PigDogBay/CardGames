@@ -34,13 +34,18 @@ class Deck {
         deck.shuffle()
     }
     
-    func deal() -> PlayingCard {
-        return deck.removeFirst()
+    func deal(dealUp : Bool = false) -> PlayingCard {
+        var card = deck.removeFirst()
+        card.isDown = !dealUp
+        return card
     }
     
     func receive(cards : [PlayingCard]){
-        deck.append(contentsOf: cards)
+        cards.forEach{
+            var card = $0
+            //Unbox cards
+            card.isDown = true
+            deck.append(card)
+        }
     }
-    
-
 }

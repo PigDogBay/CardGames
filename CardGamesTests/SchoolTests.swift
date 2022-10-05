@@ -13,50 +13,50 @@ final class SchoolTests: XCTestCase {
     func testDetermineLosingHands1() throws {
         let school = School()
         school.setUpPlayers()
-        PLAYER_HOWE.hand.hand = A23Trotter
-        PLAYER_BOMBER.hand.hand = AKQRun
-        PLAYER_LEON.hand.hand = AKJFlush
-        PLAYER_CHRIS.hand.hand = QQKPair
+        school.playerHowe.hand.hand = A23Trotter
+        school.playerBomber.hand.hand = AKQRun
+        school.playerLeon.hand.hand = AKJFlush
+        school.playerChris.hand.hand = QQKPair
         school.resolveHands()
         let losers = school.determineLosingHands()
         XCTAssertEqual(losers?.count, 1)
-        XCTAssertEqual(losers?.first?.name, PLAYER_CHRIS.name)
+        XCTAssertEqual(losers?.first?.name, school.playerChris.name)
         XCTAssertFalse(school.isPrialOut())
-        XCTAssertEqual(school.highestScoringPlayer()?.name, PLAYER_HOWE.name)
+        XCTAssertEqual(school.highestScoringPlayer()?.name, school.playerHowe.name)
     }
     
     func testDetermineLosingHands2() throws {
         let school = School()
         school.setUpPlayers()
-        PLAYER_HOWE.hand.hand = AKQRun
-        PLAYER_BOMBER.hand.hand = A23Trotter
-        PLAYER_LEON.hand.hand = AKJFlush
-        PLAYER_CHRIS.hand.hand = AKJFlush
+        school.playerHowe.hand.hand = AKQRun
+        school.playerBomber.hand.hand = A23Trotter
+        school.playerLeon.hand.hand = AKJFlush
+        school.playerChris.hand.hand = AKJFlush
         school.resolveHands()
         let losers = school.determineLosingHands()
         XCTAssertEqual(losers?.count, 2)
-        XCTAssertTrue(losers?.contains(where: {$0.name == PLAYER_CHRIS.name}) ?? false)
-        XCTAssertTrue(losers?.contains(where: {$0.name == PLAYER_LEON.name}) ?? false)
+        XCTAssertTrue(losers?.contains(where: {$0.name == school.playerChris.name}) ?? false)
+        XCTAssertTrue(losers?.contains(where: {$0.name == school.playerLeon.name}) ?? false)
         XCTAssertFalse(school.isPrialOut())
-        XCTAssertEqual(school.highestScoringPlayer()?.name, PLAYER_BOMBER.name)
+        XCTAssertEqual(school.highestScoringPlayer()?.name, school.playerBomber.name)
     }
 
     //Prial out, everyone off
     func testDetermineLosingHands3() throws {
         let school = School()
         school.setUpPlayers()
-        PLAYER_HOWE.hand.hand = A23Trotter
-        PLAYER_BOMBER.hand.hand = AKQRun
-        PLAYER_LEON.hand.hand = AKJFlush
-        PLAYER_CHRIS.hand.hand = PrialOfAces
+        school.playerHowe.hand.hand = A23Trotter
+        school.playerBomber.hand.hand = AKQRun
+        school.playerLeon.hand.hand = AKJFlush
+        school.playerChris.hand.hand = PrialOfAces
         school.resolveHands()
         let losers = school.determineLosingHands()
         XCTAssertEqual(losers?.count, 3)
-        XCTAssertTrue(losers?.contains(where: {$0.name == PLAYER_HOWE.name}) ?? false)
-        XCTAssertTrue(losers?.contains(where: {$0.name == PLAYER_LEON.name}) ?? false)
-        XCTAssertTrue(losers?.contains(where: {$0.name == PLAYER_BOMBER.name}) ?? false)
+        XCTAssertTrue(losers?.contains(where: {$0.name == school.playerHowe.name}) ?? false)
+        XCTAssertTrue(losers?.contains(where: {$0.name == school.playerLeon.name}) ?? false)
+        XCTAssertTrue(losers?.contains(where: {$0.name == school.playerBomber.name}) ?? false)
         XCTAssertTrue(school.isPrialOut())
-        XCTAssertEqual(school.highestScoringPlayer()?.name, PLAYER_CHRIS.name)
+        XCTAssertEqual(school.highestScoringPlayer()?.name, school.playerChris.name)
     }
     
     func testareAllPlayersOut1() throws {
@@ -65,15 +65,4 @@ final class SchoolTests: XCTestCase {
         school.players.forEach{$0.lives = 0}
         XCTAssertTrue(school.areAllPlayersOut())
     }
-    
-    ///Order: [PLAYER_CHRIS, PLAYER_LEON, PLAYER_BOMBER, PLAYER_HOWE]
-    func testNextPlayer1() throws {
-        let school = School()
-        school.setUpPlayers()
-        XCTAssertEqual(PLAYER_LEON.name, school.nextPlayer(current: PLAYER_CHRIS)?.name)
-        XCTAssertEqual(PLAYER_CHRIS.name, school.nextPlayer(current: PLAYER_HOWE)?.name)
-        XCTAssertEqual(PLAYER_BOMBER.name, school.nextPlayer(current: PLAYER_LEON)?.name)
-        XCTAssertEqual(PLAYER_HOWE.name, school.nextPlayer(current: PLAYER_BOMBER)?.name)
-    }
-
 }
