@@ -98,7 +98,8 @@ struct PlayingCard : Equatable{
     var isDown = true
     
     func display() -> String {
-        return isDown ? "##" : "\(suit.display())\(rank.display())"
+        let downIndicator = isDown ? "#" : ""
+        return downIndicator + "\(suit.display())\(rank.display())"
     }
     
     static func ==(lhs: PlayingCard, rhs: PlayingCard) -> Bool {
