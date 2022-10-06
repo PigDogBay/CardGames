@@ -49,6 +49,7 @@ struct BragHandScore : Comparable, Equatable {
 ///Player can swap one card with the middle or all 3
 enum Turn : Equatable {
     case swap(hand : PlayingCard, middle : PlayingCard)
+    case allOneDown(facedownCard : PlayingCard)
     case all
     
     func display() -> String {
@@ -57,6 +58,8 @@ enum Turn : Equatable {
             return "Swap \(hand.display()) for \(middle.display())"
         case .all:
             return "All"
+        case .allOneDown(let facedownCard):
+            return "All with \(facedownCard.display()) facedown"
         }
     }
 }
