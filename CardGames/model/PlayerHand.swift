@@ -58,8 +58,6 @@ class PlayerHand {
         case .swap(hand: let handCard, middle: let middleCard):
             replace(cardInHand: handCard, with: middleCard)
             middle.replace(cardInHand: middleCard, with: handCard)
-        case .allOneDown(let facedownCard):
-            fallthrough
         case .all:
             let tmp = self.hand
             self.hand = middle.hand
