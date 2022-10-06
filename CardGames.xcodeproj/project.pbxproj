@@ -25,6 +25,8 @@
 		003457A128ED87C200122DBA /* Defines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003457A028ED87C200122DBA /* Defines.swift */; };
 		003457A328EEDC0900122DBA /* PossibleHandResolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003457A228EEDC0900122DBA /* PossibleHandResolverTests.swift */; };
 		003457A528EEDF2500122DBA /* PossibleHandResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003457A428EEDF2500122DBA /* PossibleHandResolver.swift */; };
+		003457A728EEEE7B00122DBA /* HandGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003457A628EEEE7B00122DBA /* HandGenerator.swift */; };
+		003457A928EEEFF800122DBA /* HandGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003457A828EEEFF800122DBA /* HandGeneratorTests.swift */; };
 		007A08DC28E1A93F00B1281A /* GameUpdateLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A08DB28E1A93F00B1281A /* GameUpdateLogger.swift */; };
 		007A08DE28E1AFDF00B1281A /* School.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A08DD28E1AFDF00B1281A /* School.swift */; };
 		007A08E128E1B70D00B1281A /* SchoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A08E028E1B70D00B1281A /* SchoolTests.swift */; };
@@ -73,6 +75,8 @@
 		003457A028ED87C200122DBA /* Defines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defines.swift; sourceTree = "<group>"; };
 		003457A228EEDC0900122DBA /* PossibleHandResolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PossibleHandResolverTests.swift; sourceTree = "<group>"; };
 		003457A428EEDF2500122DBA /* PossibleHandResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PossibleHandResolver.swift; sourceTree = "<group>"; };
+		003457A628EEEE7B00122DBA /* HandGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandGenerator.swift; sourceTree = "<group>"; };
+		003457A828EEEFF800122DBA /* HandGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandGeneratorTests.swift; sourceTree = "<group>"; };
 		007A08DB28E1A93F00B1281A /* GameUpdateLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUpdateLogger.swift; sourceTree = "<group>"; };
 		007A08DD28E1AFDF00B1281A /* School.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = School.swift; sourceTree = "<group>"; };
 		007A08E028E1B70D00B1281A /* SchoolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolTests.swift; sourceTree = "<group>"; };
@@ -152,6 +156,7 @@
 			children = (
 				0034579E28ED828F00122DBA /* DeckTests.swift */,
 				007A08E228E1B76A00B1281A /* ExampleHands.swift */,
+				003457A828EEEFF800122DBA /* HandGeneratorTests.swift */,
 				002AA7E628CDD2BA00AFAEEB /* HandResolverTests.swift */,
 				002AA7DA28CB4D9600AFAEEB /* ModelTests.swift */,
 				00A0BE7F28E59DE800D59A4A /* PlayerHandTests.swift */,
@@ -178,6 +183,7 @@
 				003457A028ED87C200122DBA /* Defines.swift */,
 				00A0BE7B28E4965300D59A4A /* GameListener.swift */,
 				007A08DB28E1A93F00B1281A /* GameUpdateLogger.swift */,
+				003457A628EEEE7B00122DBA /* HandGenerator.swift */,
 				002AA7E428CCEC8000AFAEEB /* HandResolver.swift */,
 				002AA7D728CB4C0500AFAEEB /* Model.swift */,
 				002AA7E228CB8BB700AFAEEB /* Player.swift */,
@@ -322,6 +328,7 @@
 				00A0BE7C28E4965300D59A4A /* GameListener.swift in Sources */,
 				002AA7AD28CB478B00AFAEEB /* ContentView.swift in Sources */,
 				002AA7D628CB497D00AFAEEB /* PlayingCard.swift in Sources */,
+				003457A728EEEE7B00122DBA /* HandGenerator.swift in Sources */,
 				002AA7E528CCEC8000AFAEEB /* HandResolver.swift in Sources */,
 				007A08DE28E1AFDF00B1281A /* School.swift in Sources */,
 				00A0BE8228E5A8B900D59A4A /* AI.swift in Sources */,
@@ -340,6 +347,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				003457A928EEEFF800122DBA /* HandGeneratorTests.swift in Sources */,
 				00A0BE8028E59DE800D59A4A /* PlayerHandTests.swift in Sources */,
 				003457A328EEDC0900122DBA /* PossibleHandResolverTests.swift in Sources */,
 				002AA7E728CDD2BA00AFAEEB /* HandResolverTests.swift in Sources */,

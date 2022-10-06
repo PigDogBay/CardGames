@@ -13,8 +13,7 @@ protocol AI {
 
 class RandomAI : AI{
     func play(player : Player, middle: PlayerHand) -> ScoredTurn {
-        return player
-            .hand
+        return HandGenerator(playerHand: player.hand)
             .generatePossibleTurns(middle: middle)
             .randomElement()!
     }
@@ -22,8 +21,7 @@ class RandomAI : AI{
 
 class BestAI : AI {
     func play(player : Player, middle: PlayerHand) -> ScoredTurn {
-        return player
-            .hand
+        return HandGenerator(playerHand: player.hand)
             .generatePossibleTurns(middle: middle)
             .max(by: {$0.score < $1.score})!
     }
@@ -45,7 +43,7 @@ class PrialChuckerAI : AI {
     
     func play(player : Player, middle: PlayerHand) -> ScoredTurn {
         let best = bestAI.play(player: player, middle: middle)
-        let prialInMiddle = player.hand
+        let prialInMiddle = HandGenerator(playerHand: player.hand)
             .generatePossibleTurns(middle: middle)
             .filter{$0.middleScore.type == .prial}
             .first
@@ -62,8 +60,7 @@ class PrialChuckerAI : AI {
 class CheckMiddleAI : AI {
     let bestAI = BestAI()
     func play(player : Player, middle: PlayerHand) -> ScoredTurn {
-        let worseMiddle = player
-            .hand
+        let worseMiddle = HandGenerator(playerHand: player.hand)
             .generatePossibleTurns(middle: middle)
             .filter{$0.score > $0.middleScore}
         if !worseMiddle.isEmpty {
