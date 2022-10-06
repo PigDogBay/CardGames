@@ -43,7 +43,6 @@ struct BragHandScore : Comparable, Equatable {
 }
 
 struct HandResolver {
-  
     let hand : [PlayingCard]
     let scoreSortedHand : [PlayingCard]
     

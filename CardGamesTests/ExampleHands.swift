@@ -17,6 +17,9 @@ let PrialOfKings = [PlayingCard(suit: .diamonds, rank: .king),
 let PrialOfThrees = [PlayingCard(suit: .clubs, rank: .three),
             PlayingCard(suit: .diamonds, rank: .three),
             PlayingCard(suit: .spades, rank: .three)]
+let PrialOfFours = [PlayingCard(suit: .clubs, rank: .four),
+            PlayingCard(suit: .diamonds, rank: .four),
+            PlayingCard(suit: .spades, rank: .four)]
 let StateExpress = [PlayingCard(suit: .clubs, rank: .five),
             PlayingCard(suit: .diamonds, rank: .five),
             PlayingCard(suit: .spades, rank: .five)]
