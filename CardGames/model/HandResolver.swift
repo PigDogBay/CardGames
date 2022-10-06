@@ -7,41 +7,6 @@
 
 import Foundation
 
-enum BragHandTypes : Int32 {
-    case high, pair, flush, run, trotter, prial
-    
-    func display() -> String {
-        switch self {
-        case .high:
-            return "High"
-        case .pair:
-            return "Pair"
-        case .flush:
-            return "Flush"
-        case .run:
-            return "Run"
-        case .trotter:
-            return "Trotter"
-        case .prial:
-            return "Prial"
-        }
-    }
-}
-
-struct BragHandScore : Comparable, Equatable {
-    let type : BragHandTypes
-    let score : Int
-
-    static func < (lhs: BragHandScore, rhs: BragHandScore) -> Bool {
-        return lhs.score < rhs.score
-    }
-    
-    func display() -> String {
-        return type.display() + " \(score)"
-    }
-
-}
-
 struct HandResolver {
     let hand : [PlayingCard]
     let scoreSortedHand : [PlayingCard]
