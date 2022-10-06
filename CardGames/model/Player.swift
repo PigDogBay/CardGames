@@ -21,10 +21,11 @@ class Player : Equatable {
     init(name : String, ai : AI){
         self.name = name
         self.ai = ai
+        ai.player = self
     }
     
     func play(middle : PlayerHand) -> Turn{
-        let turn = ai.play(player: self, middle: middle).turn
+        let turn = ai.play(middle: middle).turn
         hand.play(turn: turn, middle: middle)
         hand.hide()
         return turn

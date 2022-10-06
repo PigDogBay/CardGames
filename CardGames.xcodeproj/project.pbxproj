@@ -27,6 +27,8 @@
 		003457A528EEDF2500122DBA /* PossibleHandResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003457A428EEDF2500122DBA /* PossibleHandResolver.swift */; };
 		003457A728EEEE7B00122DBA /* HandGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003457A628EEEE7B00122DBA /* HandGenerator.swift */; };
 		003457A928EEEFF800122DBA /* HandGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003457A828EEEFF800122DBA /* HandGeneratorTests.swift */; };
+		003457AB28EF4AF600122DBA /* OneDownAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003457AA28EF4AF600122DBA /* OneDownAI.swift */; };
+		003457AD28EF57DD00122DBA /* PlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003457AC28EF57DD00122DBA /* PlayerTests.swift */; };
 		007A08DC28E1A93F00B1281A /* GameUpdateLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A08DB28E1A93F00B1281A /* GameUpdateLogger.swift */; };
 		007A08DE28E1AFDF00B1281A /* School.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A08DD28E1AFDF00B1281A /* School.swift */; };
 		007A08E128E1B70D00B1281A /* SchoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A08E028E1B70D00B1281A /* SchoolTests.swift */; };
@@ -77,6 +79,8 @@
 		003457A428EEDF2500122DBA /* PossibleHandResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PossibleHandResolver.swift; sourceTree = "<group>"; };
 		003457A628EEEE7B00122DBA /* HandGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandGenerator.swift; sourceTree = "<group>"; };
 		003457A828EEEFF800122DBA /* HandGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandGeneratorTests.swift; sourceTree = "<group>"; };
+		003457AA28EF4AF600122DBA /* OneDownAI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneDownAI.swift; sourceTree = "<group>"; };
+		003457AC28EF57DD00122DBA /* PlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTests.swift; sourceTree = "<group>"; };
 		007A08DB28E1A93F00B1281A /* GameUpdateLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUpdateLogger.swift; sourceTree = "<group>"; };
 		007A08DD28E1AFDF00B1281A /* School.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = School.swift; sourceTree = "<group>"; };
 		007A08E028E1B70D00B1281A /* SchoolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolTests.swift; sourceTree = "<group>"; };
@@ -162,6 +166,7 @@
 				00A0BE7F28E59DE800D59A4A /* PlayerHandTests.swift */,
 				003457A228EEDC0900122DBA /* PossibleHandResolverTests.swift */,
 				007A08E028E1B70D00B1281A /* SchoolTests.swift */,
+				003457AC28EF57DD00122DBA /* PlayerTests.swift */,
 			);
 			path = CardGamesTests;
 			sourceTree = "<group>";
@@ -191,6 +196,7 @@
 				002AA7D528CB497D00AFAEEB /* PlayingCard.swift */,
 				003457A428EEDF2500122DBA /* PossibleHandResolver.swift */,
 				007A08DD28E1AFDF00B1281A /* School.swift */,
+				003457AA28EF4AF600122DBA /* OneDownAI.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -339,6 +345,7 @@
 				002AA7E328CB8BB700AFAEEB /* Player.swift in Sources */,
 				002AA7AB28CB478B00AFAEEB /* CardGamesApp.swift in Sources */,
 				002AA7D828CB4C0500AFAEEB /* Model.swift in Sources */,
+				003457AB28EF4AF600122DBA /* OneDownAI.swift in Sources */,
 				003457A528EEDF2500122DBA /* PossibleHandResolver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,6 +358,7 @@
 				00A0BE8028E59DE800D59A4A /* PlayerHandTests.swift in Sources */,
 				003457A328EEDC0900122DBA /* PossibleHandResolverTests.swift in Sources */,
 				002AA7E728CDD2BA00AFAEEB /* HandResolverTests.swift in Sources */,
+				003457AD28EF57DD00122DBA /* PlayerTests.swift in Sources */,
 				0034579F28ED828F00122DBA /* DeckTests.swift in Sources */,
 				007A08E328E1B76A00B1281A /* ExampleHands.swift in Sources */,
 				002AA7DB28CB4D9600AFAEEB /* ModelTests.swift in Sources */,

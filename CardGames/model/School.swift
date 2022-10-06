@@ -11,10 +11,30 @@ class School {
     var players = [Player]()
     var dealer : Player? = nil
     
-    lazy var playerBomber : Player = Player(name: "Bomber", ai: BestAI())
-    lazy var playerChris : Player = Player(name: "Chris", ai: PrialChuckerAI(school: self))
-    lazy var playerLeon : Player = Player(name: "Leon", ai: BestAI())
-    lazy var playerHowe : Player = Player(name: "Howe", ai: BestAI())
+    lazy var playerBomber : Player = {
+        let ai = BestAI()
+        let player = Player(name: "Bomber", ai: ai)
+        ai.player = player
+        return player
+    }()
+    lazy var playerChris : Player = {
+        let ai = PrialChuckerAI(school: self)
+        let player = Player(name: "Chris", ai: ai)
+        ai.player = player
+        return player
+    }()
+    lazy var playerLeon : Player = {
+        let ai = BestAI()
+        let player = Player(name: "Leon", ai: ai)
+        ai.player = player
+        return player
+    }()
+    lazy var playerHowe : Player = {
+        let ai = BestAI()
+        let player = Player(name: "Howe", ai: ai)
+        ai.player = player
+        return player
+    }()
 
     var getAllPlayers : [Player] {
         [playerChris, playerHowe, playerLeon, playerBomber]

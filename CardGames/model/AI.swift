@@ -7,43 +7,54 @@
 
 import Foundation
 
-protocol AI {
-    func play(player : Player, middle : PlayerHand) -> ScoredTurn
+protocol AI : AnyObject {
+    var player : Player? { get set }
+    func play(middle : PlayerHand) -> ScoredTurn
 }
 
 class RandomAI : AI{
-    func play(player : Player, middle: PlayerHand) -> ScoredTurn {
-        return HandGenerator(playerHand: player.hand)
+    weak var player: Player?
+    
+    func play(middle: PlayerHand) -> ScoredTurn {
+        return HandGenerator(playerHand: player!.hand)
             .generatePossibleTurns(middle: middle)
             .randomElement()!
     }
 }
 
 class BestAI : AI {
-    func play(player : Player, middle: PlayerHand) -> ScoredTurn {
-        return HandGenerator(playerHand: player.hand)
+    weak var player: Player?
+
+    func play(middle: PlayerHand) -> ScoredTurn {
+        return HandGenerator(playerHand: player!.hand)
             .generatePossibleTurns(middle: middle)
             .max(by: {$0.score < $1.score})!
     }
 }
 
 class PrialChuckerAI : AI {
+    weak var player: Player?{
+        didSet {
+            self.bestAI.player = player
+        }
+    }
     private let school : School
-    private let bestAI = BestAI()
+    private let bestAI : AI
     private let lowHand = [PlayingCard(suit: .clubs, rank: .two),
                            PlayingCard(suit: .diamonds, rank: .eight),
                            PlayingCard(suit: .hearts, rank: .eight)]
 
     private let lowestScoreToConsiderPrial : Int
-    
+
     init(school : School){
         self.school = school
+        self.bestAI = BestAI()
         lowestScoreToConsiderPrial = PlayerHand(hand: lowHand).score.score
     }
     
-    func play(player : Player, middle: PlayerHand) -> ScoredTurn {
-        let best = bestAI.play(player: player, middle: middle)
-        let prialInMiddle = HandGenerator(playerHand: player.hand)
+    func play(middle: PlayerHand) -> ScoredTurn {
+        let best = bestAI.play(middle: middle)
+        let prialInMiddle = HandGenerator(playerHand: player!.hand)
             .generatePossibleTurns(middle: middle)
             .filter{$0.middleScore.type == .prial}
             .first
@@ -57,16 +68,3 @@ class PrialChuckerAI : AI {
 
 }
 
-class CheckMiddleAI : AI {
-    let bestAI = BestAI()
-    func play(player : Player, middle: PlayerHand) -> ScoredTurn {
-        let worseMiddle = HandGenerator(playerHand: player.hand)
-            .generatePossibleTurns(middle: middle)
-            .filter{$0.score > $0.middleScore}
-        if !worseMiddle.isEmpty {
-            return worseMiddle
-                .max(by: {$0.score < $1.score})!
-        }
-        return bestAI.play(player: player, middle: middle)
-    }
-}
