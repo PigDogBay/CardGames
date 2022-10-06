@@ -11,6 +11,41 @@ enum CardErrors : Error {
     case CardAlreadyInThePack(card : PlayingCard)
 }
 
+enum BragHandTypes : Int32 {
+    case high, pair, flush, run, trotter, prial
+    
+    func display() -> String {
+        switch self {
+        case .high:
+            return "High"
+        case .pair:
+            return "Pair"
+        case .flush:
+            return "Flush"
+        case .run:
+            return "Run"
+        case .trotter:
+            return "Trotter"
+        case .prial:
+            return "Prial"
+        }
+    }
+}
+
+struct BragHandScore : Comparable, Equatable {
+    let type : BragHandTypes
+    let score : Int
+
+    static func < (lhs: BragHandScore, rhs: BragHandScore) -> Bool {
+        return lhs.score < rhs.score
+    }
+    
+    func display() -> String {
+        return type.display() + " \(score)"
+    }
+
+}
+
 ///Player can swap one card with the middle or all 3
 enum Turn : Equatable {
     case swap(hand : PlayingCard, middle : PlayingCard)
@@ -34,3 +69,4 @@ struct ScoredTurn {
         return "\(turn.display()) score: \(score.display()), middle: \(middleScore.display())"
     }
 }
+
