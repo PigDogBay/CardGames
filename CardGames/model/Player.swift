@@ -25,7 +25,7 @@ class Player : Equatable {
     }
     
     func play(middle : PlayerHand) -> Turn{
-        let turn = ai.play(middle: middle).turn
+        let turn = ai.play(middle: middle)
         hand.play(turn: turn, middle: middle)
         hand.hide()
         return turn

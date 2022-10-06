@@ -9,37 +9,34 @@ import Foundation
 
 protocol AI : AnyObject {
     var player : Player? { get set }
-    func play(middle : PlayerHand) -> ScoredTurn
+    func play(middle : PlayerHand) -> Turn
 }
 
 class RandomAI : AI{
     weak var player: Player?
     
-    func play(middle: PlayerHand) -> ScoredTurn {
+    func play(middle: PlayerHand) -> Turn {
         return HandGenerator(playerHand: player!.hand)
             .generatePossibleTurns(middle: middle)
             .randomElement()!
+            .turn
     }
 }
 
 class BestAI : AI {
     weak var player: Player?
 
-    func play(middle: PlayerHand) -> ScoredTurn {
+    func play(middle: PlayerHand) -> Turn {
         return HandGenerator(playerHand: player!.hand)
             .generatePossibleTurns(middle: middle)
             .max(by: {$0.score < $1.score})!
+            .turn
     }
 }
 
 class PrialChuckerAI : AI {
-    weak var player: Player?{
-        didSet {
-            self.bestAI.player = player
-        }
-    }
+    weak var player: Player?
     private let school : School
-    private let bestAI : AI
     private let lowHand = [PlayingCard(suit: .clubs, rank: .two),
                            PlayingCard(suit: .diamonds, rank: .eight),
                            PlayingCard(suit: .hearts, rank: .eight)]
@@ -48,22 +45,27 @@ class PrialChuckerAI : AI {
 
     init(school : School){
         self.school = school
-        self.bestAI = BestAI()
         lowestScoreToConsiderPrial = PlayerHand(hand: lowHand).score.score
     }
-    
-    func play(middle: PlayerHand) -> ScoredTurn {
-        let best = bestAI.play(middle: middle)
+
+    func bestTurn(middle: PlayerHand) -> ScoredTurn {
+        return HandGenerator(playerHand: player!.hand)
+            .generatePossibleTurns(middle: middle)
+            .max(by: {$0.score < $1.score})!
+    }
+
+    func play(middle: PlayerHand) -> Turn {
+        let best = bestTurn(middle: middle)
         let prialInMiddle = HandGenerator(playerHand: player!.hand)
             .generatePossibleTurns(middle: middle)
             .filter{$0.middleScore.type == .prial}
             .first
         if let prialInMiddle = prialInMiddle {
             if school.players.count>2 && best.score.score < lowestScoreToConsiderPrial {
-                return prialInMiddle
+                return prialInMiddle.turn
             }
         }
-        return best
+        return best.turn
     }
 
 }
