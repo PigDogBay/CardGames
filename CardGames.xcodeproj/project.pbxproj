@@ -29,6 +29,7 @@
 		003457A928EEEFF800122DBA /* HandGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003457A828EEEFF800122DBA /* HandGeneratorTests.swift */; };
 		003457AB28EF4AF600122DBA /* OneDownAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003457AA28EF4AF600122DBA /* OneDownAI.swift */; };
 		003457AD28EF57DD00122DBA /* PlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003457AC28EF57DD00122DBA /* PlayerTests.swift */; };
+		003457AF28F029DD00122DBA /* GameVariation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003457AE28F029DD00122DBA /* GameVariation.swift */; };
 		007A08DC28E1A93F00B1281A /* GameUpdateLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A08DB28E1A93F00B1281A /* GameUpdateLogger.swift */; };
 		007A08DE28E1AFDF00B1281A /* School.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A08DD28E1AFDF00B1281A /* School.swift */; };
 		007A08E128E1B70D00B1281A /* SchoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A08E028E1B70D00B1281A /* SchoolTests.swift */; };
@@ -81,6 +82,7 @@
 		003457A828EEEFF800122DBA /* HandGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandGeneratorTests.swift; sourceTree = "<group>"; };
 		003457AA28EF4AF600122DBA /* OneDownAI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneDownAI.swift; sourceTree = "<group>"; };
 		003457AC28EF57DD00122DBA /* PlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTests.swift; sourceTree = "<group>"; };
+		003457AE28F029DD00122DBA /* GameVariation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVariation.swift; sourceTree = "<group>"; };
 		007A08DB28E1A93F00B1281A /* GameUpdateLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUpdateLogger.swift; sourceTree = "<group>"; };
 		007A08DD28E1AFDF00B1281A /* School.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = School.swift; sourceTree = "<group>"; };
 		007A08E028E1B70D00B1281A /* SchoolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolTests.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				003457A428EEDF2500122DBA /* PossibleHandResolver.swift */,
 				007A08DD28E1AFDF00B1281A /* School.swift */,
 				003457AA28EF4AF600122DBA /* OneDownAI.swift */,
+				003457AE28F029DD00122DBA /* GameVariation.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				002AA7E528CCEC8000AFAEEB /* HandResolver.swift in Sources */,
 				007A08DE28E1AFDF00B1281A /* School.swift in Sources */,
 				00A0BE8228E5A8B900D59A4A /* AI.swift in Sources */,
+				003457AF28F029DD00122DBA /* GameVariation.swift in Sources */,
 				002AA7E128CB54DA00AFAEEB /* PlayerHand.swift in Sources */,
 				007A08DC28E1A93F00B1281A /* GameUpdateLogger.swift in Sources */,
 				002AA7DF28CB51B800AFAEEB /* Deck.swift in Sources */,
