@@ -59,4 +59,25 @@ final class HandGeneratorTests: XCTestCase {
             XCTFail()
         }
     }
+    
+    func testGeneratePotentialHands1() throws {
+        let playerHand = PlayerHand(hand: [PlayingCard(suit: .clubs, rank: .ace),
+                                           PlayingCard(suit: .spades, rank: .king),
+                                           PlayingCard(suit: .spades, rank: .queen)])
+        let middle = PlayerHand(hand: [PlayingCard(suit: .clubs, rank: .ace, isDown: false),
+                                       PlayingCard(suit: .spades, rank: .jack, isDown: false),
+                                       PlayingCard(suit: .hearts, rank: .five, isDown: true)])
+        let generator = HandGenerator(playerHand: playerHand)
+        let scoredTurns = generator.generatePotentialHands(middle: middle)
+        XCTAssertEqual(scoredTurns.count, 3)
+        let best = scoredTurns.max(by: {$0.score < $1.score})
+        XCTAssertEqual(best?.score.type, .trotter)
+        switch best!.turn {
+        case .swap(hand: let hand, middle: let middle):
+            XCTAssertEqual(hand.rank, .ace)
+            XCTAssertEqual(middle.rank, .five)
+        case .all:
+            XCTFail()
+        }
+    }
 }
