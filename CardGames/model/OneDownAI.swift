@@ -11,7 +11,7 @@ class OneDownAI : AI {
 
     func play(middle: PlayerHand) -> Turn {
         return HandGenerator(playerHand: player!.hand)
-            .generatePossibleTurns(middle: middle)
+            .generatePossibleTurnsFaceUpOnly(middle: middle)
             .max(by: {$0.score < $1.score})!
             .turn
     }
