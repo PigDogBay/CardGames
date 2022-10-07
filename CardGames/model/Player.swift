@@ -24,10 +24,16 @@ class Player : Equatable {
         ai.player = self
     }
     
+    func arrangeMiddle(middle : PlayerHand, turn : Turn){
+        //Easy for all up, just makesure they are all shown
+        middle.show()
+    }
+    
     func play(middle : PlayerHand) -> Turn{
         let turn = ai.play(middle: middle)
         hand.play(turn: turn, middle: middle)
         hand.hide()
+        arrangeMiddle(middle: middle, turn: turn)
         return turn
     }
     
