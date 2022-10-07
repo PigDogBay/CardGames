@@ -61,10 +61,23 @@ struct HandGenerator {
         return ScoredTurn(turn: turn, score: score, middleScore: middleScore)
     }
     
+    private func createAllInOneDown(_ middleScore : BragHandScore, downIndex : Int) -> ScoredTurn {
+        let turn = Turn.all(downIndex: downIndex)
+        let downCard = playerHand.hand[downIndex]
+        let faceUpCards = playerHand.hand.filter{$0 != downCard}
+        let resolver = PossibleHandResolver(hand: faceUpCards)
+        let score = resolver.createScore()
+        return ScoredTurn(turn: turn, score: middleScore, middleScore: score)
+    }
+    
     func generatePotentialHands(middle : PlayerHand) -> [ScoredTurn] {
         var turns = [ScoredTurn]()
         for i in 0...2 {
-            turns.append(createdScoredTurnForDownCard(middle, indexToSwap: i))
+            let scoredTurn = createdScoredTurnForDownCard(middle, indexToSwap: i)
+            turns.append(scoredTurn)
+            //All In, generate a potential score for the middle (maybe the AI will want to bait?)
+            //The potential hand score will be the current middle score
+            turns.append(createAllInOneDown(scoredTurn.middleScore, downIndex: i))
         }
         return turns
     }

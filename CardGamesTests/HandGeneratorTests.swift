@@ -69,7 +69,7 @@ final class HandGeneratorTests: XCTestCase {
                                        PlayingCard(suit: .hearts, rank: .five, isDown: true)])
         let generator = HandGenerator(playerHand: playerHand)
         let scoredTurns = generator.generatePotentialHands(middle: middle)
-        XCTAssertEqual(scoredTurns.count, 3)
+        XCTAssertEqual(scoredTurns.count, 6)
         let best = scoredTurns.max(by: {$0.score < $1.score})
         XCTAssertEqual(best?.score.type, .trotter)
         switch best!.turn {
@@ -78,6 +78,30 @@ final class HandGeneratorTests: XCTestCase {
             XCTAssertEqual(middle.rank, .five)
         case .all:
             XCTFail()
+        }
+    }
+    
+    func testGeneratePotentialHands2() throws {
+        let playerHand = PlayerHand(hand: [PlayingCard(suit: .clubs, rank: .ace),
+                                           PlayingCard(suit: .spades, rank: .king),
+                                           PlayingCard(suit: .spades, rank: .queen)])
+        let middle = PlayerHand(hand: [PlayingCard(suit: .clubs, rank: .ace, isDown: false),
+                                       PlayingCard(suit: .spades, rank: .jack, isDown: false),
+                                       PlayingCard(suit: .hearts, rank: .five, isDown: true)])
+        let generator = HandGenerator(playerHand: playerHand)
+        let scoredTurns = generator.generatePotentialHands(middle: middle)
+        XCTAssertEqual(1, scoredTurns.filter{$0.turn == .all(downIndex: 0)}.count)
+        XCTAssertEqual(1, scoredTurns.filter{$0.turn == .all(downIndex: 1)}.count)
+        XCTAssertEqual(1, scoredTurns.filter{$0.turn == .all(downIndex: 0)}.count)
+        //test middle score
+        let best = generator.generatePotentialHands(middle: middle)          
+            .max(by: {$0.middleScore < $1.middleScore})
+        XCTAssertEqual(best?.middleScore.type, .trotter)
+        switch best!.turn {
+        case .swap(hand: _, middle: _):
+            XCTFail()
+        case .all(downIndex: let downIndex):
+            XCTAssertEqual(0, downIndex)
         }
     }
 }
