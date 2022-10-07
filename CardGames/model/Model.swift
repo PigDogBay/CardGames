@@ -20,8 +20,9 @@ class Model {
     var gameState : GameState = .setUp
     var gameListener : GameListener? = nil
     var nextPlayer : Player? = nil
-    var rules : GameVariation = VariationAllUp()
-    
+//    var rules : GameVariation = VariationAllUp()
+    var rules : GameVariation = VariationOneDown()
+
     func computerMakeGame(){
         for _ in 1...1 {
             while(gameState != .gameOver){
