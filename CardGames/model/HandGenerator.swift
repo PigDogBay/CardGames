@@ -32,4 +32,19 @@ struct HandGenerator {
         turns.append(ScoredTurn(turn: .all, score: middle.score, middleScore: playerHand.score))
         return turns
     }
+    
+    ///Hand generator for the 1 down in middle variation
+    ///This will not consider the unknown card in the middle that is facedown
+    func generatePossibleTurnsFaceUpOnly(middle : PlayerHand) -> [ScoredTurn] {
+        var turns = [ScoredTurn]()
+        playerHand.hand.forEach{ playerCard in
+            middle.hand
+            .filter{!$0.isDown}
+            .forEach{ middleCard in
+                //No peeping at middle score!
+                turns.append(createdScoredTurn(middle, playerCard, middleCard))
+            }
+        }
+        return turns
+    }
 }
