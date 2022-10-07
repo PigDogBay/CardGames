@@ -24,7 +24,7 @@ class Model {
     var rules : GameVariation = VariationOneDown()
 
     func computerMakeGame(){
-        for _ in 1...1 {
+        for _ in 1...1000 {
             while(gameState != .gameOver){
                 updateState()
             }
@@ -51,7 +51,6 @@ class Model {
             gameState = .selectDealer
         case .selectDealer:
             school.nextDealer()
-            stashAll()
             deck.shuffle()
             gameListener?.dealerSelected(dealer: school.dealer!)
             gameState = .deal
@@ -65,6 +64,7 @@ class Model {
             scoreRound()
             gameState = .updateLives
         case .updateLives:
+            stashAll()
             updateLives()
         case .gameOver:
             break
@@ -81,10 +81,13 @@ class Model {
         do {
             try school.stashCards(deck: deck)
             try deck.receive(cards: middle.stash())
+            assert(deck.count==52, "Dropped a card")
         } catch CardErrors.CardAlreadyInThePack(let card){
             print("ERROR: Card already in the pack \(card)")
+            assertionFailure("Duplicate card")
         } catch {
             print(error)
+            assertionFailure(error.localizedDescription)
         }
     }
     

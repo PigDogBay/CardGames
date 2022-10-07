@@ -11,7 +11,7 @@ enum CardErrors : Error {
     case CardAlreadyInThePack(card : PlayingCard)
 }
 
-enum BragHandTypes : Int32 {
+enum BragHandTypes : Equatable, Comparable {
     case high, pair, flush, run, trotter, prial
     
     func display() -> String {

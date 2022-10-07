@@ -21,11 +21,20 @@ class ChancerAI : AI {
     weak var player: Player?
 
     func play(middle: PlayerHand) -> Turn {
-       let turn = HandGenerator(playerHand: player!.hand)
+        let generator = HandGenerator(playerHand: player!.hand)
+        let scoredTurn = generator
             .generatePossibleTurnsFaceUpOnly(middle: middle)
             .max(by: {$0.score < $1.score})!
-            .turn
-        
-        return turn
+
+        if scoredTurn.score.type == .high {
+            let potentialTurn = generator
+                .generatePotentialHands(middle: middle)
+                .max(by: {$0.score < $1.score})!
+            
+            if potentialTurn.score.type >= BragHandTypes.flush {
+                return potentialTurn.turn
+            }
+        }
+        return scoredTurn.turn
     }
 }
