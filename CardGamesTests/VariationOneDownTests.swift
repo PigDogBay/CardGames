@@ -22,7 +22,7 @@ final class VariationOneDownTests: XCTestCase {
         let middle = PlayerHand(hand: [PlayingCard(suit: .clubs, rank: .queen, isDown: true),
                                        PlayingCard(suit: .spades, rank: .king, isDown: true),
                                        PlayingCard(suit: .spades, rank: .queen, isDown: true)])
-        rules.arrangeMiddle(middle: middle, turn: .all)
+        rules.arrangeMiddle(middle: middle, turn: .all())
         XCTAssertFalse(middle.hand[0].isDown)
         XCTAssertFalse(middle.hand[1].isDown)
         XCTAssertTrue(middle.hand[2].isDown)

@@ -17,11 +17,11 @@ final class HandGeneratorTests: XCTestCase {
         let generator = HandGenerator(playerHand: playerHand)
         let scoredTurns = generator.generatePossibleTurns(middle: middle)
         XCTAssertEqual(scoredTurns.count, 10)
-        let count = scoredTurns.filter{$0.turn == Turn.all}.count
+        let count = scoredTurns.filter{$0.turn == Turn.all()}.count
         XCTAssertEqual(count, 1)
-        let score = scoredTurns.filter{$0.turn == Turn.all}.first?.score
+        let score = scoredTurns.filter{$0.turn == Turn.all()}.first?.score
         XCTAssertEqual(score, middle.score)
-        let middleScore = scoredTurns.filter{$0.turn == Turn.all}.first?.middleScore
+        let middleScore = scoredTurns.filter{$0.turn == Turn.all()}.first?.middleScore
         XCTAssertEqual(middleScore, playerHand.score)
     }
 

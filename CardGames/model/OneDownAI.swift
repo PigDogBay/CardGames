@@ -16,3 +16,16 @@ class OneDownAI : AI {
             .turn
     }
 }
+
+class ChancerAI : AI {
+    weak var player: Player?
+
+    func play(middle: PlayerHand) -> Turn {
+       let turn = HandGenerator(playerHand: player!.hand)
+            .generatePossibleTurnsFaceUpOnly(middle: middle)
+            .max(by: {$0.score < $1.score})!
+            .turn
+        
+        return turn
+    }
+}

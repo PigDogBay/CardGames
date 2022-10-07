@@ -29,7 +29,7 @@ struct HandGenerator {
             }
         }
         //Finally swap all 3
-        turns.append(ScoredTurn(turn: .all, score: middle.score, middleScore: playerHand.score))
+        turns.append(ScoredTurn(turn: .all(), score: middle.score, middleScore: playerHand.score))
         return turns
     }
     
