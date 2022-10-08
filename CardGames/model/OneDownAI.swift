@@ -26,6 +26,8 @@ class ChancerAI : AI {
             .generatePossibleTurnsFaceUpOnly(middle: middle)
             .max(by: {$0.score < $1.score})!
 
+        //Testing found that it is best to try for the middle
+        //when you have less than a pair of 2's
         if scoredTurn.score.type == .high {
             let potentialTurn = generator
                 .generatePotentialHands(middle: middle)
