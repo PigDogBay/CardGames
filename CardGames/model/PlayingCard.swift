@@ -102,6 +102,10 @@ struct PlayingCard : Equatable{
         return downIndicator + "\(suit.display())\(rank.display())"
     }
     
+    var isRed : Bool {
+        return suit == .diamonds || suit == .hearts
+    }
+    
     static func ==(lhs: PlayingCard, rhs: PlayingCard) -> Bool {
         return lhs.rank == rhs.rank && lhs.suit == rhs.suit
     }

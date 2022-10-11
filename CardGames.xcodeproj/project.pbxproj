@@ -38,6 +38,14 @@
 		00A0BE7C28E4965300D59A4A /* GameListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A0BE7B28E4965300D59A4A /* GameListener.swift */; };
 		00A0BE8028E59DE800D59A4A /* PlayerHandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A0BE7F28E59DE800D59A4A /* PlayerHandTests.swift */; };
 		00A0BE8228E5A8B900D59A4A /* AI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A0BE8128E5A8B900D59A4A /* AI.swift */; };
+		00D12FBA28F4360100AF2845 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D12FB928F4360100AF2845 /* CardView.swift */; };
+		00D12FBF28F565E800AF2845 /* HandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D12FBE28F565E800AF2845 /* HandView.swift */; };
+		00D12FC128F5682600AF2845 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D12FC028F5682600AF2845 /* PlayerView.swift */; };
+		00D12FC328F56AB200AF2845 /* LivesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D12FC228F56AB200AF2845 /* LivesView.swift */; };
+		00D12FC528F56D8600AF2845 /* TableVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D12FC428F56D8600AF2845 /* TableVM.swift */; };
+		00D12FC728F56DAB00AF2845 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D12FC628F56DAB00AF2845 /* TableView.swift */; };
+		00D12FC928F56EC600AF2845 /* PlayerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D12FC828F56EC600AF2845 /* PlayerVM.swift */; };
+		00D12FCB28F5705500AF2845 /* HandVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D12FCA28F5705500AF2845 /* HandVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +100,14 @@
 		00A0BE7B28E4965300D59A4A /* GameListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListener.swift; sourceTree = "<group>"; };
 		00A0BE7F28E59DE800D59A4A /* PlayerHandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerHandTests.swift; sourceTree = "<group>"; };
 		00A0BE8128E5A8B900D59A4A /* AI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AI.swift; sourceTree = "<group>"; };
+		00D12FB928F4360100AF2845 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		00D12FBE28F565E800AF2845 /* HandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandView.swift; sourceTree = "<group>"; };
+		00D12FC028F5682600AF2845 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		00D12FC228F56AB200AF2845 /* LivesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivesView.swift; sourceTree = "<group>"; };
+		00D12FC428F56D8600AF2845 /* TableVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableVM.swift; sourceTree = "<group>"; };
+		00D12FC628F56DAB00AF2845 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		00D12FC828F56EC600AF2845 /* PlayerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerVM.swift; sourceTree = "<group>"; };
+		00D12FCA28F5705500AF2845 /* HandVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,10 +158,12 @@
 		002AA7A928CB478B00AFAEEB /* CardGames */ = {
 			isa = PBXGroup;
 			children = (
+				002AA7AE28CB478C00AFAEEB /* Assets.xcassets */,
 				002AA7D428CB47E900AFAEEB /* model */,
+				00D12FB828F4358600AF2845 /* views */,
+				00D12FBB28F4385D00AF2845 /* view models */,
 				002AA7AA28CB478B00AFAEEB /* CardGamesApp.swift */,
 				002AA7AC28CB478B00AFAEEB /* ContentView.swift */,
-				002AA7AE28CB478C00AFAEEB /* Assets.xcassets */,
 				002AA7B028CB478C00AFAEEB /* Preview Content */,
 			);
 			path = CardGames;
@@ -205,6 +223,28 @@
 				007A08DD28E1AFDF00B1281A /* School.swift */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		00D12FB828F4358600AF2845 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				00D12FB928F4360100AF2845 /* CardView.swift */,
+				00D12FBE28F565E800AF2845 /* HandView.swift */,
+				00D12FC028F5682600AF2845 /* PlayerView.swift */,
+				00D12FC228F56AB200AF2845 /* LivesView.swift */,
+				00D12FC628F56DAB00AF2845 /* TableView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		00D12FBB28F4385D00AF2845 /* view models */ = {
+			isa = PBXGroup;
+			children = (
+				00D12FCA28F5705500AF2845 /* HandVM.swift */,
+				00D12FC828F56EC600AF2845 /* PlayerVM.swift */,
+				00D12FC428F56D8600AF2845 /* TableVM.swift */,
+			);
+			path = "view models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,15 +379,23 @@
 			files = (
 				00A0BE7C28E4965300D59A4A /* GameListener.swift in Sources */,
 				002AA7AD28CB478B00AFAEEB /* ContentView.swift in Sources */,
+				00D12FC328F56AB200AF2845 /* LivesView.swift in Sources */,
 				002AA7D628CB497D00AFAEEB /* PlayingCard.swift in Sources */,
+				00D12FC928F56EC600AF2845 /* PlayerVM.swift in Sources */,
 				003457A728EEEE7B00122DBA /* HandGenerator.swift in Sources */,
 				002AA7E528CCEC8000AFAEEB /* HandResolver.swift in Sources */,
 				007A08DE28E1AFDF00B1281A /* School.swift in Sources */,
 				00A0BE8228E5A8B900D59A4A /* AI.swift in Sources */,
+				00D12FC528F56D8600AF2845 /* TableVM.swift in Sources */,
 				003457AF28F029DD00122DBA /* GameVariation.swift in Sources */,
+				00D12FCB28F5705500AF2845 /* HandVM.swift in Sources */,
 				002AA7E128CB54DA00AFAEEB /* PlayerHand.swift in Sources */,
+				00D12FC128F5682600AF2845 /* PlayerView.swift in Sources */,
 				007A08DC28E1A93F00B1281A /* GameUpdateLogger.swift in Sources */,
+				00D12FC728F56DAB00AF2845 /* TableView.swift in Sources */,
+				00D12FBA28F4360100AF2845 /* CardView.swift in Sources */,
 				002AA7DF28CB51B800AFAEEB /* Deck.swift in Sources */,
+				00D12FBF28F565E800AF2845 /* HandView.swift in Sources */,
 				003457A128ED87C200122DBA /* Defines.swift in Sources */,
 				002AA7E328CB8BB700AFAEEB /* Player.swift in Sources */,
 				002AA7AB28CB478B00AFAEEB /* CardGamesApp.swift in Sources */,

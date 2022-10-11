@@ -10,17 +10,18 @@ import SwiftUI
 @main
 struct CardGamesApp: App {
     
+    let viewModel = TableVM()
     func startGame(){
         let model = Model()
         //let listener = GameUpdateLogger()
         let listener = NullLogger()
         model.gameListener = listener
-        model.computerMakeGame()
+//        model.computerMakeGame()
     }
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TableView(viewModel: viewModel)
                 .onAppear(perform: startGame)
         }
     }
