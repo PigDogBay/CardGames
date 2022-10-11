@@ -9,6 +9,7 @@ import Foundation
 
 protocol GameListener {
     func dealerSelected(dealer : Player)
+    func dealingDone()
     func turnStarted(player : Player, middle : PlayerHand)
     func turnEnded(player : Player, middle : PlayerHand, turn : Turn)
     func showHands(players : [Player])

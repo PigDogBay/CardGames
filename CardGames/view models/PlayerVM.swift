@@ -8,11 +8,19 @@
 import Foundation
 
 class PlayerVM : ObservableObject {
-    let name : String
+    let player : Player
     let handVM = HandVM()
     @Published var lives = 3
 
-    init(name : String){
-        self.name = name
+    init(player : Player){
+        self.player = player
+    }
+    
+    func updateHand(){
+        handVM.update(hand: player.hand)
+    }
+    
+    func updateLives(){
+        lives = player.lives
     }
 }

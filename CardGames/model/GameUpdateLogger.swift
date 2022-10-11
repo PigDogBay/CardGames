@@ -13,6 +13,10 @@ class GameUpdateLogger : GameListener {
         print("\n\(dealer.name) is Dealing")
     }
     
+    func dealingDone() {
+        print("Dealing done")
+    }
+    
     func turnStarted(player: Player, middle: PlayerHand) {
         print("Turn: \(player.name)(\(player.lives)): \t\(player.hand.display()).    Middle: \(middle.display())")
     }
@@ -55,6 +59,7 @@ class GameUpdateLogger : GameListener {
 
 class NullLogger : GameListener {
     func dealerSelected(dealer: Player) {}
+    func dealingDone() {}
     func turnStarted(player: Player, middle: PlayerHand) {}
     func turnEnded(player: Player, middle: PlayerHand, turn: Turn) {}
     func showHands(players: [Player]) {}

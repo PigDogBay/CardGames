@@ -9,7 +9,7 @@ import Foundation
 
 
 enum GameState {
-    case setUp, selectDealer, deal, play, scoreRound, updateLives, gameOver
+    case setUp, selectDealer, deal, turnStart, turnEnd, scoreRound, updateLives, gameOver
 }
 
 class Model {
@@ -20,18 +20,15 @@ class Model {
     var gameState : GameState = .setUp
     var gameListener : GameListener? = nil
     var nextPlayer : Player? = nil
-//    var rules : GameVariation = VariationAllUp()
-    var rules : GameVariation = VariationOneDown()
+    var rules : GameVariation = VariationAllUp()
+//    var rules : GameVariation = VariationOneDown()
 
     func computerMakeGame(){
         for _ in 1...1000 {
             while(gameState != .gameOver){
                 updateState()
             }
-            if let winner = school.players.first {
-                winner.gamesWon += 1
-                gameListener?.gameOver(winner: winner)
-            }
+            gameOver()
             gameState = .setUp
         }
         school.getAllPlayers
@@ -48,7 +45,6 @@ class Model {
         switch gameState {
         case .setUp:
             setUpGame()
-            gameState = .selectDealer
         case .selectDealer:
             school.nextDealer()
             deck.shuffle()
@@ -56,10 +52,13 @@ class Model {
             gameState = .deal
         case .deal:
             deal()
-            gameState = .play
+            gameState = .turnStart
             nextPlayer = school.dealer
-        case .play:
-            playRound()
+            gameListener?.dealingDone()
+        case .turnStart:
+            turnStart()
+        case .turnEnd:
+            turnEnd()
         case .scoreRound:
             scoreRound()
             gameState = .updateLives
@@ -67,7 +66,7 @@ class Model {
             stashAll()
             updateLives()
         case .gameOver:
-            break
+            gameOver()
         }
     }
     
@@ -75,6 +74,7 @@ class Model {
         deck.createDeck()
         deck.shuffle()
         school.setUpPlayers()
+        gameState = .selectDealer
     }
     
     func stashAll(){
@@ -101,16 +101,18 @@ class Model {
         }
     }
     
-    func playRound(){
+    func turnStart(){
         nextPlayer = school.nextPlayer(current: nextPlayer!)
         gameListener?.turnStarted(player: nextPlayer!, middle: middle)
+        gameState = .turnEnd
+    }
+        
+    func turnEnd(){
         let turn = nextPlayer?.play(middle: middle)
         rules.arrangeMiddle(middle: middle, turn: turn!)
         gameListener?.turnEnded(player: nextPlayer!, middle: middle, turn: turn!)
-        if nextPlayer == school.dealer {
-            //dealer is last player
-            gameState = .scoreRound
-        }
+        //Dealer is last player
+        gameState = nextPlayer == school.dealer ? .scoreRound : .turnStart
     }
     
     /// Find losing hand and lose player a life
@@ -139,5 +141,12 @@ class Model {
     
     func isGameWon() -> Bool{
         return school.players.count < 2
+    }
+    
+    func gameOver(){
+        if let winner = school.players.first {
+            winner.gamesWon += 1
+            gameListener?.gameOver(winner: winner)
+        }
     }
 }

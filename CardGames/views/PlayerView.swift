@@ -11,7 +11,7 @@ struct PlayerView: View {
     @ObservedObject var viewModel : PlayerVM
     var body: some View {
         VStack {
-            Text(viewModel.name)
+            Text(viewModel.player.name)
             HandView(viewModel: viewModel.handVM)
             LivesView(lives: $viewModel.lives)
         }
@@ -20,6 +20,6 @@ struct PlayerView: View {
 
 struct PlayerView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerView(viewModel: PlayerVM(name: "Howie"))
+        PlayerView(viewModel: PlayerVM(player: Player(name: "Howie", ai: BestAI())))
     }
 }

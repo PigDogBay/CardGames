@@ -12,36 +12,37 @@ class School {
     var dealer : Player? = nil
     
     lazy var playerBomber : Player = {
-//        let ai = BestAI()
-        let ai = ChancerAI()
+        let ai = BestAI()
+//        let ai = ChancerAI()
         let player = Player(name: "Bomber", ai: ai)
         ai.player = player
         return player
     }()
     lazy var playerChris : Player = {
-//        let ai = PrialChuckerAI(school: self)
-        let ai = OneDownAI()
+        let ai = PrialChuckerAI(school: self)
+//        let ai = OneDownAI()
         let player = Player(name: "Chris", ai: ai)
         ai.player = player
         return player
     }()
     lazy var playerLeon : Player = {
-//        let ai = BestAI()
-        let ai = OneDownAI()
+        let ai = BestAI()
+//        let ai = OneDownAI()
         let player = Player(name: "Leon", ai: ai)
         ai.player = player
         return player
     }()
-    lazy var playerHowe : Player = {
-//        let ai = BestAI()
-        let ai = OneDownAI()
-        let player = Player(name: "Howe", ai: ai)
+    lazy var playerHowie : Player = {
+        let ai = BestAI()
+//        let ai = OneDownAI()
+        let player = Player(name: "Howie", ai: ai)
         ai.player = player
         return player
     }()
 
     var getAllPlayers : [Player] {
-        [playerChris, playerHowe, playerLeon, playerBomber]
+//        [playerChris, playerHowie, playerLeon, playerBomber]
+        [playerHowie, playerBomber]
     }
         
     func setUpPlayers(){
