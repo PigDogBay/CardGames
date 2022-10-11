@@ -34,14 +34,19 @@ class TableVM : ObservableObject, GameListener {
     
     func dealerSelected(dealer: Player) {
         status = "Dealer is \(dealer.name)"
+        player1VM.isDealer = model.school.dealer == player1VM.player
+        player2VM.isDealer = model.school.dealer == player2VM.player
         updateHands()
     }
+    
     func dealingDone() {
         status = "Dealing Done"
         updateHands()
     }
 
     func turnStarted(player: Player, middle: PlayerHand) {
+        player1VM.isPlayingTurn = player1VM.player == player
+        player2VM.isPlayingTurn = player2VM.player == player
         status = "\(player.name) to play: \(player.hand.display())"
     }
     

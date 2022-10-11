@@ -11,6 +11,8 @@ class PlayerVM : ObservableObject {
     let player : Player
     let handVM = HandVM()
     @Published var lives = 3
+    @Published var isDealer = false
+    @Published var isPlayingTurn = false
 
     init(player : Player){
         self.player = player
