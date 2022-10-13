@@ -11,16 +11,18 @@ struct PlayerView: View {
     @ObservedObject var viewModel : PlayerVM
     var body: some View {
         VStack {
-            if viewModel.isDealer {
-                Text("⭐️\(viewModel.player.name)")
-            } else {
+            HStack{
+                if (viewModel.isDealer){
+                    Text("⭐️")
+                }
                 Text(viewModel.player.name)
+                Spacer()
+                LivesView(lives: $viewModel.lives)
             }
             HandView(viewModel: viewModel.handVM)
-            LivesView(lives: $viewModel.lives)
         }
-        .padding()
         .modifier(HighlightPlayerMod(isPlaying: viewModel.isPlayingTurn))
+        .frame(width: 200, height: 120)
 
     }
 }
@@ -29,6 +31,7 @@ struct HighlightPlayerMod : ViewModifier {
     func body(content: Content) -> some View {
         if isPlaying {
             content
+                .padding()
                 .overlay(
                     RoundedRectangle(cornerRadius: 8)
                         .stroke(.black, lineWidth: 1)

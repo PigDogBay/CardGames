@@ -19,6 +19,7 @@ struct LivesView: View {
             Text("🔴🔴")
         default:
             Text("🔴🔴🔴")
+                .font(.caption)
         }
     }
 }
