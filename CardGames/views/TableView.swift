@@ -12,27 +12,27 @@ struct TableView: View {
     var body: some View {
         HStack{
             VStack {
-                PlayerView(viewModel: viewModel.player1VM)
+                PlayerView(viewModel: viewModel.players[2])
                     .padding()
-                PlayerView(viewModel: viewModel.player2VM)
+                PlayerView(viewModel: viewModel.players[1])
                     .padding()
             }
             VStack {
                 Text(viewModel.status)
-                PlayerView(viewModel: viewModel.player1VM)
+                PlayerView(viewModel: viewModel.players[3])
                     .padding()
                 HandView(viewModel: viewModel.middleVM)
                     .padding()
-                PlayerView(viewModel: viewModel.player2VM)
+                PlayerView(viewModel: viewModel.players[0])
                     .padding()
                 Button(action: viewModel.action){
                     Text("ACTION")
                 }
             }
             VStack {
-                PlayerView(viewModel: viewModel.player1VM)
+                PlayerView(viewModel: viewModel.players[4])
                     .padding()
-                PlayerView(viewModel: viewModel.player2VM)
+                PlayerView(viewModel: viewModel.players[5])
                     .padding()
             }
         }

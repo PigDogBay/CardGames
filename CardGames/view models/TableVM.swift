@@ -8,8 +8,7 @@
 import Foundation
 
 class TableVM : ObservableObject, GameListener {
-    let player1VM : PlayerVM
-    let player2VM : PlayerVM
+    let players : [PlayerVM]
     let middleVM = HandVM()
     let model = Model()
     
@@ -17,15 +16,16 @@ class TableVM : ObservableObject, GameListener {
     
     init(){
         model.setUpGame()
-        player1VM = PlayerVM(player: model.school.players[0])
-        player2VM = PlayerVM(player: model.school.players[1])
+        players = model.school.players
+            .map{PlayerVM(player: $0)}
         model.gameListener = self
     }
     
     private func updateHands(){
         middleVM.update(hand: model.middle)
-        player1VM.updateHand()
-        player2VM.updateHand()
+        players.forEach{
+            $0.updateHand()
+        }
     }
     
     func action(){
@@ -34,8 +34,9 @@ class TableVM : ObservableObject, GameListener {
     
     func dealerSelected(dealer: Player) {
         status = "Dealer is \(dealer.name)"
-        player1VM.isDealer = model.school.dealer == player1VM.player
-        player2VM.isDealer = model.school.dealer == player2VM.player
+        players.forEach{
+            $0.isDealer = dealer == $0.player
+        }
         updateHands()
     }
     
@@ -45,8 +46,9 @@ class TableVM : ObservableObject, GameListener {
     }
 
     func turnStarted(player: Player, middle: PlayerHand) {
-        player1VM.isPlayingTurn = player1VM.player == player
-        player2VM.isPlayingTurn = player2VM.player == player
+        players.forEach{
+            $0.isPlayingTurn = player == $0.player
+        }
         status = "\(player.name) to play: \(player.hand.display())"
     }
     
@@ -64,9 +66,9 @@ class TableVM : ObservableObject, GameListener {
         let losers = losingPlayers.map{$0.name}
             .joined(separator: ", ")
         status = "\(losers) loses a life"
-        player1VM.updateLives()
-        player2VM.updateLives()
-                    
+        players.forEach{
+            $0.updateLives()
+        }
     }
     
     func pullThePeg(outPlayers: [Player]) {
