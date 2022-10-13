@@ -48,6 +48,8 @@
 		00D12FCB28F5705500AF2845 /* HandVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D12FCA28F5705500AF2845 /* HandVM.swift */; };
 		00D12FCD28F80CBA00AF2845 /* EmptyCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D12FCC28F80CBA00AF2845 /* EmptyCardView.swift */; };
 		00D12FCF28F8431800AF2845 /* SelectableCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D12FCE28F8431800AF2845 /* SelectableCard.swift */; };
+		00D12FD128F84A7F00AF2845 /* HumanPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D12FD028F84A7F00AF2845 /* HumanPlayerView.swift */; };
+		00D12FD328F84AA700AF2845 /* HumanHandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D12FD228F84AA700AF2845 /* HumanHandView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +114,8 @@
 		00D12FCA28F5705500AF2845 /* HandVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandVM.swift; sourceTree = "<group>"; };
 		00D12FCC28F80CBA00AF2845 /* EmptyCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCardView.swift; sourceTree = "<group>"; };
 		00D12FCE28F8431800AF2845 /* SelectableCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableCard.swift; sourceTree = "<group>"; };
+		00D12FD028F84A7F00AF2845 /* HumanPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumanPlayerView.swift; sourceTree = "<group>"; };
+		00D12FD228F84AA700AF2845 /* HumanHandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumanHandView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,8 +239,10 @@
 				00D12FB928F4360100AF2845 /* CardView.swift */,
 				00D12FCC28F80CBA00AF2845 /* EmptyCardView.swift */,
 				00D12FBE28F565E800AF2845 /* HandView.swift */,
-				00D12FC028F5682600AF2845 /* PlayerView.swift */,
+				00D12FD228F84AA700AF2845 /* HumanHandView.swift */,
+				00D12FD028F84A7F00AF2845 /* HumanPlayerView.swift */,
 				00D12FC228F56AB200AF2845 /* LivesView.swift */,
+				00D12FC028F5682600AF2845 /* PlayerView.swift */,
 				00D12FCE28F8431800AF2845 /* SelectableCard.swift */,
 				00D12FC628F56DAB00AF2845 /* TableView.swift */,
 			);
@@ -392,6 +398,7 @@
 				003457A728EEEE7B00122DBA /* HandGenerator.swift in Sources */,
 				002AA7E528CCEC8000AFAEEB /* HandResolver.swift in Sources */,
 				007A08DE28E1AFDF00B1281A /* School.swift in Sources */,
+				00D12FD128F84A7F00AF2845 /* HumanPlayerView.swift in Sources */,
 				00A0BE8228E5A8B900D59A4A /* AI.swift in Sources */,
 				00D12FC528F56D8600AF2845 /* TableVM.swift in Sources */,
 				003457AF28F029DD00122DBA /* GameVariation.swift in Sources */,
@@ -409,6 +416,7 @@
 				002AA7AB28CB478B00AFAEEB /* CardGamesApp.swift in Sources */,
 				002AA7D828CB4C0500AFAEEB /* Model.swift in Sources */,
 				003457AB28EF4AF600122DBA /* OneDownAI.swift in Sources */,
+				00D12FD328F84AA700AF2845 /* HumanHandView.swift in Sources */,
 				003457A528EEDF2500122DBA /* PossibleHandResolver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
