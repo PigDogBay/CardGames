@@ -47,6 +47,7 @@
 		00D12FC928F56EC600AF2845 /* PlayerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D12FC828F56EC600AF2845 /* PlayerVM.swift */; };
 		00D12FCB28F5705500AF2845 /* HandVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D12FCA28F5705500AF2845 /* HandVM.swift */; };
 		00D12FCD28F80CBA00AF2845 /* EmptyCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D12FCC28F80CBA00AF2845 /* EmptyCardView.swift */; };
+		00D12FCF28F8431800AF2845 /* SelectableCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D12FCE28F8431800AF2845 /* SelectableCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,7 @@
 		00D12FC828F56EC600AF2845 /* PlayerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerVM.swift; sourceTree = "<group>"; };
 		00D12FCA28F5705500AF2845 /* HandVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandVM.swift; sourceTree = "<group>"; };
 		00D12FCC28F80CBA00AF2845 /* EmptyCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCardView.swift; sourceTree = "<group>"; };
+		00D12FCE28F8431800AF2845 /* SelectableCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +237,7 @@
 				00D12FBE28F565E800AF2845 /* HandView.swift */,
 				00D12FC028F5682600AF2845 /* PlayerView.swift */,
 				00D12FC228F56AB200AF2845 /* LivesView.swift */,
+				00D12FCE28F8431800AF2845 /* SelectableCard.swift */,
 				00D12FC628F56DAB00AF2845 /* TableView.swift */,
 			);
 			path = views;
@@ -384,6 +387,7 @@
 				002AA7AD28CB478B00AFAEEB /* ContentView.swift in Sources */,
 				00D12FC328F56AB200AF2845 /* LivesView.swift in Sources */,
 				002AA7D628CB497D00AFAEEB /* PlayingCard.swift in Sources */,
+				00D12FCF28F8431800AF2845 /* SelectableCard.swift in Sources */,
 				00D12FC928F56EC600AF2845 /* PlayerVM.swift in Sources */,
 				003457A728EEEE7B00122DBA /* HandGenerator.swift in Sources */,
 				002AA7E528CCEC8000AFAEEB /* HandResolver.swift in Sources */,
