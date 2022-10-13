@@ -12,6 +12,15 @@ protocol AI : AnyObject {
     func play(middle : PlayerHand) -> Turn
 }
 
+class HumanAI : AI {
+    var player: Player?
+    var turn : Turn?
+    
+    func play(middle: PlayerHand) -> Turn {
+        return turn!
+    }
+}
+
 class RandomAI : AI{
     weak var player: Player?
     

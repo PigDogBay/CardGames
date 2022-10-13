@@ -10,6 +10,7 @@ import Foundation
 class School {
     var players = [Player]()
     var dealer : Player? = nil
+    let humanAI = HumanAI()
     
     lazy var playerBomber : Player = {
         let ai = BestAI()
@@ -39,9 +40,9 @@ class School {
         ai.player = player
         return player
     }()
+    //Human Player
     lazy var playerMatt : Player = {
-        let ai = BestAI()
-//        let ai = OneDownAI()
+        let ai = self.humanAI
         let player = Player(name: "Matt", ai: ai)
         ai.player = player
         return player
@@ -55,13 +56,15 @@ class School {
     }()
 
     var getAllPlayers : [Player] {
-        [playerChris, playerHowie, playerLeon, playerBomber, playerMatt, playerGeordie]
+        [playerChris, playerHowie, playerLeon, playerBomber, playerGeordie]
     }
         
     func setUpPlayers(){
         players.removeAll()
         players.append(contentsOf: getAllPlayers)
         players.shuffle()
+        //Human player if seat position 0
+        players.insert(playerMatt, at: 0)
         //Set up lives and seat positions
         var seat = 0
         players.forEach{

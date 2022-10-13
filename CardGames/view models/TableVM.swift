@@ -63,6 +63,7 @@ class TableVM : ObservableObject, GameListener {
         if player.seat == 0 {
             //Human player wait for input
             canUpdateGame = false
+            model.school.humanAI.turn = Turn.all()
         }
     }
     
