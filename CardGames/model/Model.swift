@@ -99,6 +99,7 @@ class Model {
             }
             middle.receive(card: deck.deal(dealUp: rules.isMiddleCardFaceUp(dealIndex: i)))
         }
+        school.playerHuman.hand.show()
     }
     
     func turnStart(){

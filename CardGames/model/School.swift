@@ -41,7 +41,7 @@ class School {
         return player
     }()
     //Human Player
-    lazy var playerMatt : Player = {
+    lazy var playerHuman : Player = {
         let ai = self.humanAI
         let player = Player(name: "Matt", ai: ai)
         ai.player = player
@@ -64,7 +64,7 @@ class School {
         players.append(contentsOf: getAllPlayers)
         players.shuffle()
         //Human player if seat position 0
-        players.insert(playerMatt, at: 0)
+        players.insert(playerHuman, at: 0)
         //Set up lives and seat positions
         var seat = 0
         players.forEach{
