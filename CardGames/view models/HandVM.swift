@@ -11,7 +11,10 @@ class HandVM : ObservableObject {
     @Published var card1 : PlayingCard? = nil
     @Published var card2 : PlayingCard? = nil
     @Published var card3 : PlayingCard? = nil
-    
+    @Published var isCardOneSelected = false
+    @Published var isCardTwoSelected = false
+    @Published var isCardThreeSelected = false
+
     init(){
 //        card1 = PlayingCard(suit: .clubs, rank: .ten, isDown: false)
 //        card2 = PlayingCard(suit: .diamonds, rank: .eight, isDown: false)

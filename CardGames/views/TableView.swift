@@ -21,9 +21,9 @@ struct TableView: View {
                 Text(viewModel.status)
                 PlayerView(viewModel: viewModel.players[3])
                     .padding()
-                MiddleView(viewModel: viewModel.middleVM)
+                HandView(viewModel: viewModel.middleVM)
                     .padding(40)
-                HumanPlayerView(viewModel: viewModel.players[0])
+                PlayerView(viewModel: viewModel.players[0])
                     .padding(.top, 80)
                 Button(action: viewModel.action){
                     Text("ACTION")

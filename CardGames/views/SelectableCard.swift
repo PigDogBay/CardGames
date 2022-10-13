@@ -10,7 +10,7 @@ import SwiftUI
 struct SelectableCardView: View {
     let playingCard : PlayingCard
     @State private var offset : CGFloat = 0
-    @State var isSelected = false
+    @Binding var isSelected : Bool
     
     var body: some View {
         CardView(playingCard: playingCard)
@@ -30,6 +30,6 @@ struct SelectableCardView: View {
 
 struct SelectableCardView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectableCardView(playingCard: PlayingCard(suit: .hearts, rank: .queen, isDown: false))
+        SelectableCardView(playingCard: PlayingCard(suit: .hearts, rank: .queen, isDown: false), isSelected: .constant(true))
     }
 }
