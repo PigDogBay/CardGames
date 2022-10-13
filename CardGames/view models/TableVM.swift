@@ -15,6 +15,8 @@ class TableVM : ObservableObject, GameListener {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @Published var status : String = "Welcome!"
     
+    private var canUpdateGame = true
+    
     init(){
         model.setUpGame()
         players = model.school.players
@@ -29,8 +31,15 @@ class TableVM : ObservableObject, GameListener {
         }
     }
     
+    func autoUpdate(){
+        if canUpdateGame {
+            model.updateState()
+        }
+    }
+    
     func action(){
-        model.updateState()
+        //Human player has taken turn
+        canUpdateGame = true
     }
     
     func dealerSelected(dealer: Player) {
@@ -51,6 +60,10 @@ class TableVM : ObservableObject, GameListener {
             $0.isPlayingTurn = player == $0.player
         }
         status = "\(player.name) to play: \(player.hand.display())"
+        if player.seat == 0 {
+            //Human player wait for input
+            canUpdateGame = false
+        }
     }
     
     func turnEnded(player: Player, middle: PlayerHand, turn: Turn) {
@@ -70,6 +83,7 @@ class TableVM : ObservableObject, GameListener {
         players.forEach{
             $0.updateLives()
         }
+        canUpdateGame = false
     }
     
     func pullThePeg(outPlayers: [Player]) {
