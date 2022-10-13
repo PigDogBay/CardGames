@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+let CARD_WIDTH : CGFloat = 60
+let CARD_HEIGHT : CGFloat = 100
+
 struct CardView: View {
     let playingCard : PlayingCard
     var textColor : Color {
@@ -24,35 +27,15 @@ struct CardView: View {
 
     var body: some View {
         VStack {
-            if playingCard.isDown {
-                Text(playingCard.rank.display())
-                    .font(.title)
-                    .foregroundColor(.blue)
-                    .padding(.top, 8)
-                    .padding(.leading,8)
-                    .padding(.trailing,8)
-                Text("__")
-                    .font(.title)
-                    .foregroundColor(.blue)
-                    .padding(.top, 0)
-                    .padding(.leading,8)
-                    .padding(.trailing,8)
-                    .padding(.bottom, 8)
-            } else {
+            if !playingCard.isDown {
                 Text(playingCard.rank.display())
                     .font(.title)
                     .foregroundColor(textColor)
-                    .padding(.top, 8)
-                    .padding(.leading,8)
-                    .padding(.trailing,8)
                 Text(playingCard.suit.display())
                     .font(.title)
-                    .padding(.top, 0)
-                    .padding(.leading,8)
-                    .padding(.trailing,8)
-                    .padding(.bottom, 8)
             }
         }
+        .frame(width: CARD_WIDTH, height: CARD_HEIGHT)
         .background(backColor)
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .overlay(
