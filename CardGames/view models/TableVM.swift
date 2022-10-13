@@ -72,6 +72,9 @@ class TableVM : ObservableObject, GameListener {
     }
     
     func showHands(players: [Player]) {
+        self.players.forEach{
+            $0.isPlayingTurn = false
+        }
         status = "Show Hands"
         updateHands()
     }
