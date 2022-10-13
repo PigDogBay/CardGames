@@ -33,4 +33,24 @@ class HandVM : ObservableObject {
         }
             
     }
+    
+    func unselectCards(){
+        isCardOneSelected = false
+        isCardTwoSelected = false
+        isCardThreeSelected = false
+    }
+    
+    var selectedCount : Int  {
+        var count = 0
+        if isCardOneSelected {
+            count += 1
+        }
+        if isCardTwoSelected {
+            count += 1
+        }
+        if isCardThreeSelected {
+            count += 1
+        }
+        return count
+    }
 }

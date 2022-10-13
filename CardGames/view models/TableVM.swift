@@ -16,12 +16,41 @@ class TableVM : ObservableObject, GameListener {
     @Published var status : String = "Welcome!"
     
     private var canUpdateGame = true
-    
+    private var isHumanPlayersGo = false
+    private var disposables = Set<AnyCancellable>()
+
     init(){
         model.setUpGame()
         players = model.school.players
             .map{PlayerVM(player: $0)}
+        
+        //Listener for player selections
+        Publishers
+            .MergeMany(players[0].handVM.$isCardOneSelected,
+                       players[0].handVM.$isCardTwoSelected,
+                       players[0].handVM.$isCardThreeSelected,
+                       middleVM.$isCardOneSelected,
+                       middleVM.$isCardTwoSelected,
+                       middleVM.$isCardThreeSelected)
+            .eraseToAnyPublisher()
+            .dropFirst(6)
+            .filter{_ in self.isHumanPlayersGo == true}
+            .delay(for: 0.5, scheduler: DispatchQueue.main)  //willSet event, need to wait for var to be set
+            .sink(receiveValue: {_ in self.playerMadeAMove()})
+            .store(in: &disposables)
+
+        
         model.gameListener = self
+    }
+    
+    private func playerMadeAMove(){
+        if (middleVM.selectedCount == 1 && players[0].handVM.selectedCount == 1){
+            //TODO create the TURN
+            isHumanPlayersGo = false
+            canUpdateGame = true
+            middleVM.unselectCards()
+            players[0].handVM.unselectCards()
+        }
     }
     
     private func updateHands(){
@@ -61,6 +90,7 @@ class TableVM : ObservableObject, GameListener {
         }
         status = "\(player.name) to play: \(player.hand.display())"
         if player.seat == 0 {
+            isHumanPlayersGo = true
             //Human player wait for input
             canUpdateGame = false
             model.school.humanAI.turn = Turn.all()
