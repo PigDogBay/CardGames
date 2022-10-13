@@ -13,10 +13,13 @@ struct LivesView: View {
         switch lives {
         case 0:
             Text("")
+                .font(.caption)
         case 1:
             Text("🔴")
+                .font(.caption)
         case 2:
             Text("🔴🔴")
+                .font(.caption)
         default:
             Text("🔴🔴🔴")
                 .font(.caption)
