@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import Combine
 
 class TableVM : ObservableObject, GameListener {
     let players : [PlayerVM]
     let middleVM = HandVM()
     let model = Model()
-    
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @Published var status : String = "Welcome!"
     
     init(){

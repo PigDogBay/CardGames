@@ -35,7 +35,7 @@ struct TableView: View {
                 PlayerView(viewModel: viewModel.players[5])
                     .padding()
             }
-        }
+        }.onReceive(viewModel.timer){_ in viewModel.action()}
     }
 }
 
