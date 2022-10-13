@@ -21,7 +21,7 @@ struct TableView: View {
                 Text(viewModel.status)
                 PlayerView(viewModel: viewModel.players[3])
                     .padding()
-                HandView(viewModel: viewModel.middleVM)
+                MiddleView(viewModel: viewModel.middleVM)
                     .padding(40)
                 HumanPlayerView(viewModel: viewModel.players[0])
                     .padding(.top, 80)
