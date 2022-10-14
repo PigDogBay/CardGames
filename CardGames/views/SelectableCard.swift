@@ -23,9 +23,9 @@ struct SelectableCardView: View {
                 .onTapGesture {
                     withAnimation(.easeInOut(duration: 0.1)) {
                         if viewModel.isSelected{
-                            offset += 30
+                            offset -= viewModel.selectionOffset
                         } else {
-                            offset -= 30
+                            offset += viewModel.selectionOffset
                         }
                         viewModel.isSelected.toggle()
                     }

@@ -30,6 +30,12 @@ class HandVM : ObservableObject {
         card3VM.reset()
     }
     
+    func setSelectionOffset(offsetAmount : CGFloat){
+        self.card1VM.selectionOffset = offsetAmount
+        self.card2VM.selectionOffset = offsetAmount
+        self.card3VM.selectionOffset = offsetAmount
+    }
+    
     var selectedCard : PlayingCard? {
         if card1VM.isSelected {
             return card1VM.card

@@ -40,6 +40,8 @@ class TableVM : ObservableObject, GameListener {
             .store(in: &disposables)
         
         model.gameListener = self
+        //Move cards down when selected
+        middleVM.setSelectionOffset(offsetAmount: 30)
     }
     
     private func playerMadeAMove(){

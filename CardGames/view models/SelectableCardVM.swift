@@ -13,6 +13,8 @@ class SelectableCardVM : ObservableObject {
     @Published var card : PlayingCard? = nil
     @Published var isSelected = false
     
+    var selectionOffset : CGFloat  = -30
+    
     func reset(){
         isSelected = false
         offset = 0
