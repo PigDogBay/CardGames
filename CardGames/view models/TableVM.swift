@@ -26,19 +26,18 @@ class TableVM : ObservableObject, GameListener {
         
         //Listener for player selections
         Publishers
-            .MergeMany(players[0].handVM.$isCardOneSelected,
-                       players[0].handVM.$isCardTwoSelected,
-                       players[0].handVM.$isCardThreeSelected,
-                       middleVM.$isCardOneSelected,
-                       middleVM.$isCardTwoSelected,
-                       middleVM.$isCardThreeSelected)
+            .MergeMany(players[0].handVM.card1VM.$isSelected,
+                       players[0].handVM.card2VM.$isSelected,
+                       players[0].handVM.card3VM.$isSelected,
+                       middleVM.card1VM.$isSelected,
+                       middleVM.card2VM.$isSelected,
+                       middleVM.card3VM.$isSelected)
             .eraseToAnyPublisher()
             .dropFirst(6)
             .filter{_ in self.isHumanPlayersGo == true}
             .delay(for: 0.5, scheduler: DispatchQueue.main)  //willSet event, need to wait for var to be set
             .sink(receiveValue: {_ in self.playerMadeAMove()})
             .store(in: &disposables)
-
         
         model.gameListener = self
     }

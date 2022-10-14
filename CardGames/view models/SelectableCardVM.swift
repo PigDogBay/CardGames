@@ -10,14 +10,10 @@ import Foundation
 class SelectableCardVM : ObservableObject {
 
     @Published var offset = 0
-    let playingCard : PlayingCard
-
-    init(playingCard : PlayingCard){
-        self.playingCard = playingCard
-    }
+    @Published var card : PlayingCard? = nil
+    @Published var isSelected = false
     
     func reset(){
         offset = 0
     }
-    
 }

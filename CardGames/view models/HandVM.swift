@@ -8,47 +8,37 @@
 import Foundation
 
 class HandVM : ObservableObject {
-    @Published var card1 : PlayingCard? = nil
-    @Published var card2 : PlayingCard? = nil
-    @Published var card3 : PlayingCard? = nil
-    @Published var isCardOneSelected = false
-    @Published var isCardTwoSelected = false
-    @Published var isCardThreeSelected = false
+    let card1VM = SelectableCardVM()
+    let card2VM = SelectableCardVM()
+    let card3VM = SelectableCardVM()
 
-    init(){
-//        card1 = PlayingCard(suit: .clubs, rank: .ten, isDown: false)
-//        card2 = PlayingCard(suit: .diamonds, rank: .eight, isDown: false)
-//        card3 = PlayingCard(suit: .hearts, rank: .eight, isDown: false)
-    }
-    
     func update(hand : PlayerHand){
         if (hand.hand.count == 3){
-            card1 = hand.hand[0]
-            card2 = hand.hand[1]
-            card3 = hand.hand[2]
+            card1VM.card = hand.hand[0]
+            card2VM.card = hand.hand[1]
+            card3VM.card = hand.hand[2]
         } else {
-            card1 = nil
-            card2 = nil
-            card3 = nil
+            card1VM.card = nil
+            card2VM.card = nil
+            card3VM.card = nil
         }
-            
     }
     
     func unselectCards(){
-        isCardOneSelected = false
-        isCardTwoSelected = false
-        isCardThreeSelected = false
+        card1VM.isSelected = false
+        card2VM.isSelected = false
+        card3VM.isSelected = false
     }
     
     var selectedCount : Int  {
         var count = 0
-        if isCardOneSelected {
+        if card1VM.isSelected {
             count += 1
         }
-        if isCardTwoSelected {
+        if card2VM.isSelected {
             count += 1
         }
-        if isCardThreeSelected {
+        if card3VM.isSelected {
             count += 1
         }
         return count

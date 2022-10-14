@@ -12,21 +12,9 @@ struct HandView: View {
     
     var body: some View {
         HStack {
-            if let card = viewModel.card1 {
-                SelectableCardView(viewModel: SelectableCardVM(playingCard: card), isSelected: $viewModel.isCardOneSelected)
-            } else {
-                EmptyCardView()
-            }
-            if let card = viewModel.card2 {
-                SelectableCardView(viewModel: SelectableCardVM(playingCard: card), isSelected: $viewModel.isCardTwoSelected)
-            } else {
-                EmptyCardView()
-            }
-            if let card = viewModel.card3 {
-                SelectableCardView(viewModel: SelectableCardVM(playingCard: card), isSelected: $viewModel.isCardThreeSelected)
-            } else {
-                EmptyCardView()
-            }
+            SelectableCardView(viewModel: viewModel.card1VM)
+            SelectableCardView(viewModel: viewModel.card2VM)
+            SelectableCardView(viewModel: viewModel.card3VM)
         }
     }
 }
