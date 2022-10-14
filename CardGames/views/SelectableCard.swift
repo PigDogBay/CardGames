@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct SelectableCardView: View {
-    let playingCard : PlayingCard
+    @ObservedObject var viewModel : SelectableCardVM
     @State private var offset : CGFloat = 0
     @Binding var isSelected : Bool
     
     var body: some View {
-        CardView(playingCard: playingCard)
+        CardView(playingCard: viewModel.playingCard)
             .offset(x: 0, y: offset)
             .onTapGesture {
                 withAnimation(.easeInOut(duration: 0.1)) {
@@ -30,6 +30,6 @@ struct SelectableCardView: View {
 
 struct SelectableCardView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectableCardView(playingCard: PlayingCard(suit: .hearts, rank: .queen, isDown: false), isSelected: .constant(true))
+        SelectableCardView(viewModel: SelectableCardVM(playingCard: PlayingCard(suit: .hearts, rank: .queen, isDown: false)), isSelected: .constant(true))
     }
 }

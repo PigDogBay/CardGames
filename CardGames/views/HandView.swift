@@ -13,17 +13,17 @@ struct HandView: View {
     var body: some View {
         HStack {
             if let card = viewModel.card1 {
-                SelectableCardView(playingCard: card, isSelected: $viewModel.isCardOneSelected)
+                SelectableCardView(viewModel: SelectableCardVM(playingCard: card), isSelected: $viewModel.isCardOneSelected)
             } else {
                 EmptyCardView()
             }
             if let card = viewModel.card2 {
-                SelectableCardView(playingCard: card, isSelected: $viewModel.isCardTwoSelected)
+                SelectableCardView(viewModel: SelectableCardVM(playingCard: card), isSelected: $viewModel.isCardTwoSelected)
             } else {
                 EmptyCardView()
             }
             if let card = viewModel.card3 {
-                SelectableCardView(playingCard: card, isSelected: $viewModel.isCardThreeSelected)
+                SelectableCardView(viewModel: SelectableCardVM(playingCard: card), isSelected: $viewModel.isCardThreeSelected)
             } else {
                 EmptyCardView()
             }
