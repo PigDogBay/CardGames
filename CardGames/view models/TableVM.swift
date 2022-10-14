@@ -44,7 +44,8 @@ class TableVM : ObservableObject, GameListener {
     
     private func playerMadeAMove(){
         if (middleVM.selectedCount == 1 && players[0].handVM.selectedCount == 1){
-            //TODO create the TURN
+            let turn = Turn.swap(hand: players[0].handVM.selectedCard!, middle: middleVM.selectedCard!)
+            model.school.humanAI.turn = turn
             isHumanPlayersGo = false
             canUpdateGame = true
             middleVM.unselectCards()

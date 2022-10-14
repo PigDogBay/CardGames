@@ -30,6 +30,19 @@ class HandVM : ObservableObject {
         card3VM.reset()
     }
     
+    var selectedCard : PlayingCard? {
+        if card1VM.isSelected {
+            return card1VM.card
+        }
+        if card2VM.isSelected {
+            return card2VM.card
+        }
+        if card3VM.isSelected {
+            return card3VM.card
+        }
+        return nil
+    }
+    
     var selectedCount : Int  {
         var count = 0
         if card1VM.isSelected {
