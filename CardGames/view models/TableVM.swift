@@ -50,6 +50,12 @@ class TableVM : ObservableObject, GameListener {
             canUpdateGame = true
             middleVM.unselectCards()
             players[0].handVM.unselectCards()
+        } else if (middleVM.selectedCount == 3 || players[0].handVM.selectedCount == 3){
+            model.school.humanAI.turn = Turn.all()
+            isHumanPlayersGo = false
+            canUpdateGame = true
+            middleVM.unselectCards()
+            players[0].handVM.unselectCards()
         }
     }
     
