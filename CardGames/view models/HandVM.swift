@@ -25,9 +25,9 @@ class HandVM : ObservableObject {
     }
     
     func unselectCards(){
-        card1VM.isSelected = false
-        card2VM.isSelected = false
-        card3VM.isSelected = false
+        card1VM.reset()
+        card2VM.reset()
+        card3VM.reset()
     }
     
     var selectedCount : Int  {

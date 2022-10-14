@@ -9,11 +9,12 @@ import Foundation
 
 class SelectableCardVM : ObservableObject {
 
-    @Published var offset = 0
+    @Published var offset : CGFloat = 0
     @Published var card : PlayingCard? = nil
     @Published var isSelected = false
     
     func reset(){
+        isSelected = false
         offset = 0
     }
 }

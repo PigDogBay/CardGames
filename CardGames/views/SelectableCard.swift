@@ -15,6 +15,11 @@ struct SelectableCardView: View {
         if let card = viewModel.card {
             CardView(playingCard: card)
                 .offset(x: 0, y: offset)
+                .onReceive(viewModel.$offset){newOffset in
+                    withAnimation(.easeInOut(duration: 0.1)) {
+                        offset = newOffset
+                    }
+                }
                 .onTapGesture {
                     withAnimation(.easeInOut(duration: 0.1)) {
                         if viewModel.isSelected{
